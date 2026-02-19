@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Africans Talent | Études, Football & Mobilité Internationale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0B2D5C',
+                        brightBlue: '#2563EB',
+                        red: '#D62828',
+                        gold: '#F2C14E',
+                        text: '#1B1F24',
+                        offWhite: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .transition-spring {
+            transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-offWhite text-text antialiased transition-colors duration-300 dark:bg-navy dark:text-white">
+    <!-- Navigation -->
+    <nav class="w-full py-6 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-black font-display tracking-tight text-navy dark:text-white">AFRICANS<span
+                        class="text-red">TALENT</span>.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-600 dark:text-white/60">
+                <a href="etudes.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.etudes">ÉTUDES</a>
+                <a href="football.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.football">FOOTBALL</a>
+                <a href="bourses.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.bourses">BOURSES</a>
+                <a href="voyage.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.voyage">VOYAGE</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Theme Switcher -->
+                <button onclick="toggleTheme()"
+                    class="size-10 flex items-center justify-center bg-gray-100 rounded-xl hover:bg-gray-200 transition-all dark:bg-white/10 dark:hover:bg-white/20">
+                    <span class="material-symbols-outlined text-sm dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-sm hidden dark:block text-gold">light_mode</span>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="relative group">
+                    <button
+                        class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-xl font-bold text-xs hover:bg-gray-200 transition-all dark:bg-white/10 dark:hover:bg-white/20">
+                        <span id="current-lang-flag">🇫🇷</span> <span id="current-lang-text">FR</span>
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden dark:bg-navy dark:border-white/10">
+                        <button onclick="setLanguage('fr')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 border-b border-gray-50 dark:hover:bg-white/5 dark:border-white/10"><span>🇫🇷</span>
+                            Français</button>
+                        <button onclick="setLanguage('en')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 border-b border-gray-50 dark:hover:bg-white/5 dark:border-white/10"><span>🇺🇸</span>
+                            English</button>
+                        <button onclick="setLanguage('ru')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 dark:hover:bg-white/5"><span>🇷🇺</span>
+                            Русский</button>
+                    </div>
+                </div>
+                <a href="contact.html"
+                    class="hidden md:flex bg-black text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-gray-800 transition-spring hover:scale-105 hover:shadow-lg dark:bg-white dark:text-navy"
+                    data-i18n="nav.contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-[1400px] mx-auto px-4 md:px-6 pb-20">
+        <!-- Hero Section -->
+        <div class="relative w-full h-[600px] md:h-[700px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070"
+                    class="w-full h-full object-cover object-center brightness-90 group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/50 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                <div class="max-w-3xl">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 mb-8 font-bold text-xs uppercase tracking-wider overflow-hidden">
+                        <span class="relative flex h-2 w-2"><span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red opacity-75"></span><span
+                                class="relative inline-flex rounded-full h-2 w-2 bg-red"></span></span>
+                        <span data-i18n="hero.badge">Inscriptions 2024-2025 Ouvertes</span>
+                    </div>
+                    <h1 class="font-display font-black text-5xl md:text-7xl lg:text-8xl text-white leading-[0.9] mb-8 drop-shadow-xl uppercase"
+                        data-i18n="hero.title">L'Excellence sans Frontières.</h1>
+                    <p class="text-white/80 text-lg md:text-2xl max-w-2xl mb-10 leading-relaxed font-medium"
+                        data-i18n="hero.subtitle">Votre passerelle premium pour les études, le football professionnel et
+                        la mobilité internationale.</p>
+                    <a href="contact.html"
+                        class="inline-flex bg-red text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-white hover:text-red transition-all duration-300 shadow-xl shadow-red/20 group items-center gap-3">
+                        <span data-i18n="hero.cta">Commencer mon projet</span>
+                        <span
+                            class="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Services -->
+        <div class="relative -mt-24 z-20 px-4 md:px-0">
+            <div class="flex gap-6 overflow-x-auto hide-scroll pb-10 snap-x snap-mandatory">
+                <a href="etudes.html"
+                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-14 h-14 bg-navy/5 text-navy rounded-2xl flex items-center justify-center group-hover:bg-navy group-hover:text-white transition-colors dark:bg-white/10 dark:text-white dark:group-hover:bg-white dark:group-hover:text-navy">
+                            <span class="material-symbols-outlined text-3xl">school</span>
+                        </div>
+                        <span
+                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
+                            data-i18n="tag.russie">Russie</span>
+                    </div>
+                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
+                        data-i18n="service.etudes.title">Études
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="service.etudes.desc">Admission
+                        garantie dans les meilleures universités d'État. Pack complet logé.</p>
+                    <div
+                        class="flex items-center text-navy font-bold text-sm group-hover:gap-2 transition-all dark:text-white">
+                        <span data-i18n="btn.details">Découvrir les packs</span> <span
+                            class="material-symbols-outlined text-lg">arrow_forward</span>
+                    </div>
+                </a>
+                <a href="football.html"
+                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-14 h-14 bg-red/5 text-red rounded-2xl flex items-center justify-center group-hover:bg-red group-hover:text-white transition-colors dark:bg-red/10 dark:text-red dark:group-hover:bg-red dark:group-hover:text-white">
+                            <span class="material-symbols-outlined text-3xl">sports_soccer</span>
+                        </div>
+                        <span
+                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
+                            data-i18n="tag.football">Football</span>
+                    </div>
+                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
+                        data-i18n="service.football.title">
+                        Football</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="service.football.desc">Formation
+                        intensive et essais avec des clubs pros. Devenez joueur professionnel.</p>
+                    <div class="flex items-center text-red font-bold text-sm group-hover:gap-2 transition-all"><span
+                            data-i18n="btn.details">Découvrir les packs</span> <span
+                            class="material-symbols-outlined text-lg">arrow_forward</span></div>
+                </a>
+                <a href="bourses.html"
+                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-14 h-14 bg-gold/10 text-gold rounded-2xl flex items-center justify-center group-hover:bg-gold group-hover:text-white transition-colors dark:bg-gold/20 dark:text-gold dark:group-hover:bg-gold dark:group-hover:text-navy">
+                            <span class="material-symbols-outlined text-3xl">workspace_premium</span>
+                        </div>
+                        <span
+                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
+                            data-i18n="tag.chine">Chine</span>
+                    </div>
+                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
+                        data-i18n="service.bourses.title">
+                        Bourses</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="service.bourses.desc">Financement
+                        jusqu'à 100% pour vos études en Chine (Master & PhD).</p>
+                    <div
+                        class="flex items-center text-gold font-bold text-sm group-hover:gap-2 transition-all dark:text-white">
+                        <span data-i18n="btn.details">Découvrir les packs</span> <span
+                            class="material-symbols-outlined text-lg">arrow_forward</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white pt-20 pb-12 rounded-t-[3rem] dark:bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <span class="text-3xl font-black font-display tracking-tight mb-6 block">AFRICANS<span
+                            class="text-red">TALENT</span>.</span>
+                    <p class="text-white/60 text-lg max-w-sm" data-i18n="hero.subtitle">Votre futur international
+                        commence ici.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 text-gold" data-i18n="nav.contact">Contact</h5>
+                    <p class="text-white/60">+7 900 516 87 18</p>
+                    <p class="text-white/60">contact@africans-talent.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/message/VFAUK25HIZTPG1" target="_blank"
+        class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring z-50 flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.996-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.669c1.603.951 3.567 1.454 5.56 1.455h.001c5.584 0 10.126-4.544 10.128-10.128.001-2.707-1.054-5.251-2.97-7.168-1.917-1.917-4.461-2.971-7.168-2.972-5.584 0-10.129 4.544-10.131 10.129-.001 2.105.65 4.154 1.882 5.867l-1.01 3.692 3.709-.973zm10.51-12.433c.273.135.45.224.489.289.039.064.039.373-.058.643-.096.269-.563 1.077-.825 1.184-.262.106-.51.121-.758-.049-.124-.085-3.736-1.571-4.721-2.435-.124-.108-.231-.227-.316-.355l-.121-.188c-.242-.378-.457-.716-.457-1.2 0-.488.197-.75.33-.906.144-.169.355-.223.502-.223.155 0 .31.003.439.012.146.01.231.022.33.243.108.242.37.901.403.966.033.066.054.145.011.23-.043.085-.064.14-.129.216-.065.075-.133.149-.198.221-.066.072-.132.143-.049.29.135.242.541.889 1.148 1.435.783.708 1.443.928 1.649 1.031.188.094.298.074.406-.05.109-.124.467-.542.593-.726.126-.184.251-.155.421-.092zm0 0">
+            </path>
+        </svg>
+        <span class="font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+            data-i18n="whatsapp.cta">Discuter avec un expert</span>
+    </a>
+    <script src="i18n.js"></script>
+</body>
+
+</html>
