@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>NEON SNAKE - GOD MODE EVOLUTION</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00f2ff",
+                        "background-dark": "#0a0a0c",
+                        "neon-magenta": "#ff00ff",
+                        "neon-gold": "#ffd700",
+                        "neon-green": "#39ff14",
+                        "neon-red": "#ff3131",
+                    },
+                    fontFamily: { "display": ["Space Grotesk", "sans-serif"] }
+                },
+            },
+        }
+    </script>
+    <style>
+        .neon-border {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4), inset 0 0 5px rgba(0, 242, 255, 0.2);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 8px rgba(0, 242, 255, 0.7);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(to right, rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 34, 35, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+        }
+
+        .score-pop {
+            animation: score-pop 0.3s ease-out;
+        }
+
+        @keyframes score-pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+                color: #39ff14;
+                text-shadow: 0 0 15px #39ff14;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .power-bar {
+            height: 4px;
+            background: #00f2ff;
+            transition: width 0.1s linear;
+            width: 0%;
+        }
+
+        .win-gradient {
+            background: linear-gradient(45deg, #00f2ff, #ff00ff, #39ff14, #ffd700);
+            background-size: 400% 400%;
+            animation: grad 5s linear infinite;
+        }
+
+        @keyframes grad {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-dark font-display text-slate-100 overflow-hidden flex items-center justify-center min-h-screen">
+
+    <div id="game-wrapper"
+        class="relative flex h-screen w-full max-w-[450px] flex-col border-x border-primary/10 bg-background-dark shadow-2xl">
+        <!-- Header -->
+        <header class="flex items-center justify-between px-6 pt-6 pb-2">
+            <div class="flex flex-col">
+                <h1
+                    class="text-2xl font-black tracking-tighter text-neon-magenta neon-text uppercase leading-none italic">
+                    GOD SNAKE</h1>
+                <span class="text-[10px] text-primary/60 tracking-[0.3em] font-medium uppercase">Neural Kernel
+                    v5.0</span>
+            </div>
+            <div class="flex flex-col items-end">
+                <span class="text-[10px] text-slate-500 font-bold tracking-widest uppercase">Coverage</span>
+                <p id="coverage" class="text-xl font-bold leading-none tracking-tight text-white">0%</p>
+            </div>
+        </header>
+
+        <!-- Dynamic Timer Bar for Power-ups -->
+        <div class="px-6 h-1 mt-2">
+            <div id="timer-bar" class="power-bar rounded-full shadow-[0_0_10px_#00f2ff]"></div>
+        </div>
+
+        <main class="flex-1 relative px-4 flex flex-col items-center justify-start pt-2">
+            <!-- HUD -->
+            <div class="w-full flex justify-between mb-4 px-2">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest font-black">Score</span>
+                    <span id="current-score" class="text-2xl font-black text-slate-100 italic">00,000</span>
+                </div>
+                <div class="flex flex-col items-end space-y-1">
+                    <div class="flex gap-2">
+                        <select id="lang-select"
+                            class="bg-black/40 text-[9px] text-primary border border-primary/20 rounded px-1 outline-none">
+                            <option value="fr">Français</option>
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="de">Deutsch</option>
+                        </select>
+                        <select id="voice-select"
+                            class="bg-black/40 text-[9px] text-primary border border-primary/20 rounded px-1 outline-none">
+                            <option value="female">Voix ♀</option>
+                            <option value="male">Voix ♂</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Space -->
+            <div id="game-container"
+                class="relative w-full aspect-square glass-panel rounded-2xl overflow-hidden neon-border grid-bg flex items-center justify-center">
+                <canvas id="gameCanvas" class="w-full h-full"></canvas>
+
+                <div id="feedback-text"
+                    class="absolute pointer-events-none text-3xl font-black italic text-white neon-text opacity-0 scale-50 transition-all duration-500 z-40 text-center uppercase tracking-tighter">
+                </div>
+
+                <!-- Win Overlay -->
+                <div id="game-win"
+                    class="absolute inset-0 win-gradient flex flex-col items-center justify-center hidden z-30">
+                    <div class="bg-black/80 backdrop-blur-xl p-8 rounded-3xl border border-white/20 text-center mx-4">
+                        <h2 class="text-4xl font-black text-white mb-2 italic">PERFECTION NEURONALE</h2>
+                        <p id="win-msg" class="text-sm mb-6 text-primary tracking-widest font-bold uppercase">Système
+                            synchronisé à 100%</p>
+                        <button onclick="resetGame()"
+                            class="px-8 py-3 bg-white text-black font-black rounded-lg uppercase tracking-tighter">Relancer
+                            le cycle</button>
+                    </div>
+                </div>
+
+                <!-- Game Over Overlay -->
+                <div id="game-over"
+                    class="absolute inset-0 bg-background-dark/95 flex flex-col items-center justify-center hidden z-20 backdrop-blur-md">
+                    <h2 class="text-4xl font-black text-neon-red mb-2 italic uppercase">Crash Système</h2>
+                    <p id="final-score" class="text-xl mb-6 text-primary font-bold">RECOVERY FAULT: 0</p>
+                    <button onclick="resetGame()"
+                        class="px-8 py-3 bg-neon-red text-white font-black rounded-lg uppercase shadow-[0_0_20px_rgba(255,49,49,0.5)]">Force
+                        Reboot</button>
+                </div>
+
+                <!-- Start Overlay -->
+                <div id="start-overlay"
+                    class="absolute inset-0 bg-background-dark/30 backdrop-blur-sm flex flex-col items-center justify-center z-10 transition-opacity duration-500">
+                    <button onclick="startGame()"
+                        class="w-20 h-20 bg-primary/10 border-2 border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary/20 hover:scale-110 active:scale-90 transition-all group relative">
+                        <div class="absolute inset-0 rounded-full border border-primary animate-ping opacity-20"></div>
+                        <span
+                            class="material-symbols-outlined text-4xl group-hover:rotate-180 transition-transform duration-500">settings_input_composite</span>
+                    </button>
+                    <p class="mt-4 text-primary font-bold tracking-[0.2em] animate-pulse uppercase text-[10px]">Lancer
+                        le Noyau Neural</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="w-full mt-6 space-y-3">
+                <div onclick="toggleAutoplay()"
+                    class="flex items-center justify-between glass-panel px-5 py-4 rounded-xl cursor-pointer hover:bg-white/5 transition-all border border-primary/20">
+                    <div class="flex items-center gap-4">
+                        <div id="ai-icon"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 transition-all">
+                            <span class="material-symbols-outlined text-slate-400">psychology</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span
+                                class="text-sm font-black tracking-tight text-white uppercase italic leading-none">Auto-Pilote
+                                Neural</span>
+                            <span id="ai-status"
+                                class="text-[9px] text-slate-500 uppercase font-black mt-1">Désactivé</span>
+                        </div>
+                    </div>
+                    <div id="ai-toggle" class="w-12 h-6 bg-slate-700 rounded-full relative p-1 transition-all">
+                        <div id="ai-knob" class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="glass-panel p-3 rounded-xl flex flex-col items-center">
+                        <span class="text-[8px] text-slate-500 uppercase font-black mb-1">Vitesse Noyau</span>
+                        <select id="speed-select" onchange="setSpeed(this.value)"
+                            class="bg-transparent text-primary font-bold text-xs outline-none uppercase cursor-pointer">
+                            <option value="120">Simulation</option>
+                            <option value="70" selected>Tactique</option>
+                            <option value="30">Overclock</option>
+                            <option value="12">God Mode</option>
+                        </select>
+                    </div>
+                    <div id="power-info"
+                        class="glass-panel p-3 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold text-neon-gold uppercase text-center">
+                        Surcharge: 0%
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Legend Footer -->
+        <footer class="px-6 py-4 flex justify-between opacity-30 text-[8px] font-black tracking-widest uppercase mb-2">
+            <div class="flex gap-4">
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-neon-magenta"></span>
+                    Data</span>
+                <span class="flex items-center gap-1"><span class="w-2 h-2 border border-white"></span> Bloq</span>
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-neon-gold"></span>
+                    Bonus</span>
+            </div>
+            <button onclick="toggleMute()" class="material-symbols-outlined text-sm">volume_up</button>
+        </footer>
+    </div>
+
+    <script>
+        const TXT = {
+            fr: { congrats: ["Incroyable!", "Quelle maîtrise!", "Serein et précis!", "Parfait!", "Génial!", "Impressionnant!", "Harmonie Totale!"], power: "BONUS ACTIVÉ", start: "Lien neural établi", win: "Perfection neuronale", lose: "Système corrompu" },
+            en: { congrats: ["Incredible!", "Such mastery!", "Smooth and precise!", "Perfect!", "Brilliant!", "Impressive!", "Total Harmony!"], power: "POWER ACTIVATED", start: "Neural link established", win: "Neural perfection", lose: "System collapse" },
+            es: { congrats: ["¡Increíble!", "¡Qué maestría!", "¡Suave y preciso!", "¡Perfecto!", "¡Brillante!", "¡Impresionante!", "¡Armonía Total!"], power: "BONO ACTIVADO", start: "Enlace establecido", win: "Perfección neural", lose: "Sistema colapsado" },
+            de: { congrats: ["Unglaublich!", "Meisterhaft!", "Sanft und präzise!", "Perfekt!", "Brilliant!", "Eindrucksvoll!", "Totale Harmonie!"], power: "BONUS AKTIVIERT", start: "Verbindung gestartet", win: "Neurale Perfektion", lose: "Kernel-Fehler" }
+        };
+
+        class Sound {
+            constructor() { this.ctx = null; this.muted = false; }
+            init() { if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)(); }
+            move() { this.beep(100, 0.05, 0.03); }
+            eat() { this.beep(600, 0.1, 0.1); setTimeout(() => this.beep(1200, 0.1, 0.1), 50); }
+            bonus() { [400, 800, 1600].forEach((f, i) => setTimeout(() => this.beep(f, 0.2, 0.05), i * 60)); }
+            crash() { this.beep(150, 0.5, 0.1); }
+            beep(f, d, v) {
+                if (this.muted || !this.ctx) return;
+                const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+                o.type = 'sine'; o.frequency.setValueAtTime(f, this.ctx.currentTime);
+                g.gain.setValueAtTime(v, this.ctx.currentTime);
+                g.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + d);
+                o.connect(g); g.connect(this.ctx.destination);
+                o.start(); o.stop(this.ctx.currentTime + d);
+            }
+            speak(text) {
+                if (this.muted) return;
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                const l = document.getElementById('lang-select').value;
+                const g = document.getElementById('voice-select').value;
+                u.lang = l === 'fr' ? 'fr-FR' : l === 'en' ? 'en-US' : l === 'es' ? 'es-ES' : 'de-DE';
+                u.pitch = g === 'female' ? 1.2 : 0.8; u.rate = 0.9;
+                window.speechSynthesis.speak(u);
+            }
+        }
+        const sfx = new Sound();
+
+        // --- CONSTANTS ---
+        const GS = 20;
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('current-score');
+        const coverageEl = document.getElementById('coverage');
+        const timerBar = document.getElementById('timer-bar');
+
+        // --- STATE ---
+        let snake = [];
+        let foods = [];
+        let obstacles = [];
+        let special = [];
+        let dir = 'right', nextDir = 'right';
+        let score = 0, lastPraise = 0;
+        let isGameOver = false, isWin = false, isPaused = true, autoplay = false;
+        let speed = 70, ghostTimer = 0, multiTimer = 0;
+
+        function resetGame() {
+            const mid = Math.floor(GS / 2);
+            snake = [{ x: 5, y: mid }, { x: 4, y: mid }, { x: 3, y: mid }];
+            dir = 'right'; nextDir = 'right';
+            score = 0; lastPraise = 0;
+            isGameOver = false; isWin = false; isPaused = true;
+            ghostTimer = 0; multiTimer = 0;
+            foods = []; obstacles = []; special = [];
+            generateObstacles();
+            spawnFood(); spawnFood();
+            updateUI();
+            document.getElementById('game-over').classList.add('hidden');
+            document.getElementById('game-win').classList.add('hidden');
+            document.getElementById('start-overlay').classList.remove('hidden');
+        }
+
+        function generateObstacles() {
+            for (let i = 0; i < 7; i++) {
+                const o = { x: Math.floor(Math.random() * GS), y: Math.floor(Math.random() * GS) };
+                if (!snake.some(s => s.x === o.x && s.y === o.y) && o.x > 8) obstacles.push(o);
+            }
+        }
+
+        function spawnFood() {
+            while (foods.length < (multiTimer > 0 ? 10 : 3)) {
+                const f = { x: Math.floor(Math.random() * GS), y: Math.floor(Math.random() * GS) };
+                if (!snake.some(s => s.x === f.x && s.y === f.y) && !obstacles.some(o => o.x === f.x && o.y === f.y) && !foods.some(fo => fo.x === f.x && fo.y === f.y)) foods.push(f);
+                else break;
+            }
+        }
+
+        function spawnSpecial() {
+            const types = ['GHOST', 'MULTI', 'SCORE'];
+            const t = types[Math.floor(Math.random() * types.length)];
+            const s = { x: Math.floor(Math.random() * GS), y: Math.floor(Math.random() * GS), type: t };
+            if (!snake.some(se => se.x === s.x && se.y === s.y) && !obstacles.some(o => o.x === s.x && o.y === s.y)) special.push(s);
+        }
+
+        function startGame() {
+            if (!isPaused) return;
+            sfx.init(); isPaused = false;
+            document.getElementById('start-overlay').classList.add('hidden');
+            sfx.speak(TXT[document.getElementById('lang-select').value].start);
+            tick();
+        }
+
+        function tick() {
+            if (isPaused || isGameOver || isWin) return;
+            if (autoplay) nextDir = getSmartMove();
+            update();
+            setTimeout(tick, speed);
+        }
+
+        function update() {
+            dir = nextDir;
+            const head = { ...snake[0] };
+            if (dir === 'up') head.y--;
+            else if (dir === 'down') head.y++;
+            else if (dir === 'left') head.x--;
+            else if (dir === 'right') head.x++;
+
+            // Collisions
+            if (head.x < 0 || head.x >= GS || head.y < 0 || head.y >= GS ||
+                obstacles.some(o => o.x === head.x && o.y === head.y)) {
+                gameOver(); return;
+            }
+            if (ghostTimer <= 0 && snake.some((s, i) => i < snake.length - 1 && s.x === head.x && s.y === head.y)) {
+                gameOver(); return;
+            }
+
+            snake.unshift(head);
+            sfx.move();
+
+            if (snake.length >= GS * GS - obstacles.length) { win(); return; }
+
+            const fIdx = foods.findIndex(f => f.x === head.x && f.y === head.y);
+            if (fIdx !== -1) {
+                score += (multiTimer > 0 ? 30 : 10);
+                foods.splice(fIdx, 1); sfx.eat(); spawnFood();
+                if (Math.random() < 0.1) spawnSpecial();
+                if (score >= lastPraise + 100) praise();
+            } else {
+                const sIdx = special.findIndex(s => s.x === head.x && s.y === head.y);
+                if (sIdx !== -1) { applyPower(special[sIdx]); special.splice(sIdx, 1); }
+                snake.pop();
+            }
+
+            if (ghostTimer > 0) ghostTimer--;
+            if (multiTimer > 0) multiTimer--;
+            updateUI();
+        }
+
+        function applyPower(p) {
+            sfx.bonus();
+            const l = document.getElementById('lang-select').value;
+            if (p.type === 'GHOST') { ghostTimer = 150; sfx.speak(l === 'fr' ? "Fantôme" : "Ghost"); }
+            if (p.type === 'MULTI') { multiTimer = 200; spawnFood(); sfx.speak(l === 'fr' ? "Multiplié" : "Multiplied"); }
+            if (p.type === 'SCORE') { score += 100; sfx.speak(l === 'fr' ? "Boost" : "Boost"); }
+            showFeedback(p.type);
+        }
+
+        // --- AI LOGIC: THE NEURAL KERNEL (PATHFINDING + SAFETY) ---
+        function getSmartMove() {
+            const head = snake[0];
+            const target = findBestTarget();
+
+            // 1. If target found, try BFS to reach it
+            if (target) {
+                const path = findPath(head, target, false);
+                if (path && isSafeAfterMove(path[0])) return path[0];
+            }
+
+            // 2. No target or unsafe? Follow Tail (Stalling)
+            const tailPath = findPathToTail(head);
+            if (tailPath) return tailPath[0];
+
+            // 3. Last resort: Move to neighbor with most free space
+            const moves = getValidMoves(head);
+            if (moves.length === 0) return dir; // Dead
+            moves.sort((a, b) => floodFill(b) - floodFill(a));
+            return moves[0].dir;
+        }
+
+        function findPath(start, goal, ignoreSnake) {
+            const q = [[start, []]]; const vis = new Set([`${start.x},${start.y}`]);
+            while (q.length > 0) {
+                const [curr, path] = q.shift();
+                if (curr.x === goal.x && curr.y === goal.y) return path;
+                for (const m of getValidMoves(curr, ignoreSnake)) {
+                    if (!vis.has(`${m.x},${m.y}`)) { vis.add(`${m.x},${m.y}`); q.push([{ x: m.x, y: m.y }, [...path, m.dir]]); }
+                }
+            }
+            return null;
+        }
+
+        function getValidMoves(pos, ignoreSnake = false) {
+            return [{ x: pos.x, y: pos.y - 1, dir: 'up' }, { x: pos.x, y: pos.y + 1, dir: 'down' }, { x: pos.x - 1, y: pos.y, dir: 'left' }, { x: pos.x + 1, y: pos.y, dir: 'right' }]
+                .filter(n => n.x >= 0 && n.x < GS && n.y >= 0 && n.y < GS && !obstacles.some(o => o.x === n.x && o.y === n.y) &&
+                    (ignoreSnake || !snake.some((s, i) => i < snake.length - 1 && s.x === n.x && s.y === n.y)));
+        }
+
+        function isSafeAfterMove(moveDir) {
+            const nextHead = { ...snake[0] };
+            if (moveDir === 'up') nextHead.y--; else if (moveDir === 'down') nextHead.y++; else if (moveDir === 'left') nextHead.x--; else if (moveDir === 'right') nextHead.x++;
+
+            // Virtual move
+            const virtSnake = [{ ...nextHead }, ...snake];
+            if (!foods.some(f => f.x === nextHead.x && f.y === nextHead.y)) virtSnake.pop();
+
+            // Can virtual head reach virtual tail?
+            return findPath(virtSnake[0], virtSnake[virtSnake.length - 1], false) !== null;
+        }
+
+        function findPathToTail(pos) {
+            const tail = snake[snake.length - 1];
+            const moves = getValidMoves(pos);
+            // Sort by distance to tail (farthest first to stall/wait for body to clear)
+            moves.sort((a, b) => {
+                const distA = Math.abs(a.x - tail.x) + Math.abs(a.y - tail.y);
+                const distB = Math.abs(b.x - tail.x) + Math.abs(b.y - tail.y);
+                return distB - distA;
+            });
+            for (let m of moves) {
+                if (isSafeAfterMove(m.dir)) return [m.dir];
+            }
+            return null;
+        }
+
+        function findBestTarget() {
+            if (special.length > 0) return special[0];
+            if (foods.length > 0) {
+                return foods.sort((a, b) => (Math.abs(a.x - snake[0].x) + Math.abs(a.y - snake[0].y)) - (Math.abs(b.x - snake[0].x) + Math.abs(b.y - snake[0].y)))[0];
+            }
+            return null;
+        }
+
+        function floodFill(pos) {
+            const q = [pos]; const vis = new Set([`${pos.x},${pos.y}`]);
+            let count = 0;
+            while (q.length > 0 && count < 100) {
+                const c = q.shift(); count++;
+                for (let m of getValidMoves(c)) {
+                    if (!vis.has(`${m.x},${m.y}`)) { vis.add(`${m.x},${m.y}`); q.push({ x: m.x, y: m.y }); }
+                }
+            }
+            return count;
+        }
+
+        // --- UI & RENDERING ---
+        function updateUI() {
+            scoreEl.textContent = score.toString().padStart(5, '0');
+            const total = GS * GS - obstacles.length;
+            coverageEl.textContent = Math.floor((snake.length / total) * 100) + '%';
+
+            const time = Math.max(ghostTimer, multiTimer);
+            const max = Math.max(150, 200);
+            timerBar.style.width = (time > 0 ? (time / max) * 100 : 0) + '%';
+
+            const info = document.getElementById('power-info');
+            if (ghostTimer > 0) { info.textContent = "GHOST ACTIVE"; info.className = "glass-panel p-3 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold text-white uppercase"; }
+            else if (multiTimer > 0) { info.textContent = "MULTI ACTIVE"; info.className = "glass-panel p-3 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold text-neon-green uppercase"; }
+            else { info.textContent = "STABLE"; info.className = "glass-panel p-3 rounded-xl flex flex-col items-center justify-center text-[8px] font-bold text-slate-500 uppercase"; }
+        }
+
+        function renderLoop() {
+            ctx.clearRect(0, 0, 400, 400);
+            const sz = 400 / GS;
+
+            obstacles.forEach(o => { ctx.fillStyle = "#1e293b"; ctx.beginPath(); ctx.roundRect(o.x * sz + 2, o.y * sz + 2, sz - 4, sz - 4, 2); ctx.fill(); });
+            foods.forEach(f => { ctx.fillStyle = "#ff00ff"; ctx.shadowBlur = 12; ctx.shadowColor = "#ff00ff"; ctx.beginPath(); ctx.arc(f.x * sz + sz / 2, f.y * sz + sz / 2, sz / 3, 0, 7); ctx.fill(); });
+            special.forEach(s => { ctx.fillStyle = s.type === 'GHOST' ? '#fff' : s.type === 'MULTI' ? '#39ff14' : '#ffd700'; ctx.shadowBlur = 15; ctx.shadowColor = ctx.fillStyle; ctx.beginPath(); for (let i = 0; i < 5; i++) ctx.lineTo((s.x * sz + sz / 2) + sz / 3 * Math.cos(i * 4 * Math.PI / 5 - 1.5), (s.y * sz + sz / 2) + sz / 3 * Math.sin(i * 4 * Math.PI / 5 - 1.5)); ctx.fill(); });
+
+            snake.forEach((s, i) => {
+                const isH = i === 0;
+                ctx.fillStyle = ghostTimer > 0 ? `rgba(255,255,255,${0.8 - i / snake.length})` : isH ? '#00f2ff' : `rgba(0,242,255,${0.9 - (i / snake.length) * 0.7})`;
+                ctx.shadowBlur = isH ? 15 : 0; ctx.shadowColor = '#00f2ff';
+                ctx.beginPath(); ctx.roundRect(s.x * sz + 1, s.y * sz + 1, sz - 2, sz - 2, isH ? 5 : 2); ctx.fill();
+                if (isH) {
+                    ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(s.x * sz + sz / 3, s.y * sz + sz / 3, 1.5, 0, 7); ctx.fill(); ctx.beginPath(); ctx.arc(s.x * sz + 2 * sz / 3, s.y * sz + sz / 3, 1.5, 0, 7); ctx.fill();
+                }
+            });
+            requestAnimationFrame(renderLoop);
+        }
+
+        function praise() {
+            const lang = document.getElementById('lang-select').value;
+            const list = TXT[lang].congrats;
+            const text = list[Math.floor(Math.random() * list.length)];
+            sfx.speak(text); showFeedback(text);
+            lastPraise = score;
+            scoreEl.classList.add('score-pop'); setTimeout(() => scoreEl.classList.remove('score-pop'), 300);
+        }
+
+        function showFeedback(t) {
+            const el = document.getElementById('feedback-text'); el.textContent = t;
+            el.classList.replace('opacity-0', 'opacity-100'); el.classList.replace('scale-50', 'scale-110');
+            setTimeout(() => { el.classList.replace('opacity-100', 'opacity-0'); el.classList.replace('scale-110', 'scale-50'); }, 1500);
+        }
+
+        function toggleAutoplay() {
+            autoplay = !autoplay;
+            const lang = document.getElementById('lang-select').value;
+            if (autoplay) {
+                document.getElementById('ai-knob').style.transform = "translateX(24px)";
+                document.getElementById('ai-toggle').classList.replace('bg-slate-700', 'bg-primary');
+                document.getElementById('ai-status').textContent = TXT[lang].status.aiOn;
+                sfx.speak(TXT[lang].status.aiOn);
+                if (isPaused && !isGameOver) startGame();
+            } else {
+                document.getElementById('ai-knob').style.transform = "translateX(0px)";
+                document.getElementById('ai-toggle').classList.replace('bg-primary', 'bg-slate-700');
+                document.getElementById('ai-status').textContent = TXT[lang].status.aiOff;
+                sfx.speak(TXT[lang].status.aiOff);
+            }
+        }
+
+        function gameOver() {
+            isGameOver = true; sfx.crash();
+            document.getElementById('game-over').classList.remove('hidden');
+            document.getElementById('final-score').textContent = "RECOVERY FAULT: " + score;
+            sfx.speak(TXT[document.getElementById('lang-select').value].lose);
+        }
+
+        function win() {
+            isWin = true; document.getElementById('game-win').classList.remove('hidden');
+            sfx.speak(TXT[document.getElementById('lang-select').value].win);
+        }
+
+        function setSpeed(v) { speed = parseInt(v); }
+        function toggleMute() { sfx.muted = !sfx.muted; event.target.textContent = sfx.muted ? 'volume_off' : 'volume_up'; }
+
+        window.addEventListener('keydown', e => {
+            if (autoplay) return;
+            const k = e.key.toLowerCase();
+            if (['w', 'arrowup'].includes(k) && dir !== 'down') nextDir = 'up';
+            if (['s', 'arrowdown'].includes(k) && dir !== 'up') nextDir = 'down';
+            if (['a', 'arrowleft'].includes(k) && dir !== 'right') nextDir = 'left';
+            if (['d', 'arrowright'].includes(k) && dir !== 'left') nextDir = 'right';
+            if (isPaused && !isGameOver && ['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) startGame();
+        });
+
+        resetGame();
+        requestAnimationFrame(renderLoop);
+    </script>
+</body>
+
+</html>

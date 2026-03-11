@@ -7,7 +7,7 @@
     <title>Voyage & Accueil | Africans Talent</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -17,15 +17,17 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: '#0B2D5C',
+                        navy: '#0369A1',
+                        sky: '#0EA5E9',
                         red: '#D62828',
                         gold: '#F2C14E',
-                        text: '#1B1F24',
-                        offWhite: '#F8F9FA'
+                        text: '#0C4A6E',
+                        offWhite: '#F0F9FF',
+                        sportGreen: '#22C55E'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
+                        sans: ['Barlow', 'sans-serif'],
+                        display: ['Barlow Condensed', 'sans-serif'],
                     },
                     borderRadius: {
                         '4xl': '2.5rem',
@@ -37,6 +39,80 @@
     <style>
         .transition-spring {
             transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            flex: 0 0 300px;
+            height: 450px;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.8) translateZ(-200px);
+            opacity: 0.4;
+            filter: blur(4px);
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 400px;
+                height: 550px;
+            }
+        }
+
+        .gallery-item.active {
+            transform: scale(1.1) translateZ(0);
+            opacity: 1;
+            filter: blur(0);
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(3, 105, 161, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item.active img {
+            transform: scale(1.05);
+        }
+
+        .gallery-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(3, 105, 161, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: white;
+            color: #0369A1;
+        }
+
+        .gallery-nav-btn:hover {
+            background: #0369A1;
+            color: white;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -55,9 +131,11 @@
                     data-i18n="nav.etudes">ÉTUDES</a>
                 <a href="football.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.football">FOOTBALL</a>
-                <a href="bourses.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                <a href="chine.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.bourses">BOURSES</a>
                 <a href="voyage.html" class="text-navy font-black dark:text-white" data-i18n="nav.voyage">VOYAGE</a>
+                <a href="apropos.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.apropos">À PROPOS</a>
             </div>
             <div class="flex items-center gap-4">
                 <!-- Theme Switcher -->
@@ -251,6 +329,110 @@
     </section>
 
     <!-- Footer -->
+    <!-- Gallery Section -->
+    <section class="py-24 bg-white dark:bg-navy/50 overflow-hidden border-t border-gray-100 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-4 mb-12 text-center">
+            <h2 class="text-4xl md:text-5xl font-black font-display text-navy dark:text-white mb-4"
+                data-i18n="gallery.title.voyage">Accueil & Installation</h2>
+            <p class="text-gray-500 dark:text-white/60 max-w-2xl mx-auto" data-i18n="gallery.subtitle">Découvrez
+                l'immersion totale de nos programmes.</p>
+        </div>
+
+        <div class="gallery-container relative">
+            <div class="gallery-track" id="galleryTrack">
+                <div class="gallery-item active"><img
+                        src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&w=800&q=80"
+                        alt="Plane"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80"
+                        alt="Traveler"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=800&q=80"
+                        alt="Adventure"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1500835595327-8307e770df63?auto=format&fit=crop&w=800&q=80"
+                        alt="Destination"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80"
+                        alt="Road"></div>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-12">
+                <button onclick="moveGallery(-1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">west</span>
+                </button>
+                <button onclick="moveGallery(1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">east</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentIdx = 0;
+        const track = document.getElementById('galleryTrack');
+        const items = document.querySelectorAll('.gallery-item');
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        function moveGallery(dir) {
+            currentIdx = (currentIdx + dir + items.length) % items.length;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            items.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === currentIdx) {
+                    item.classList.add('active');
+                }
+            });
+            const containerWidth = track.parentElement.offsetWidth;
+            const itemOffset = items[currentIdx].offsetLeft;
+            const itemWidth = items[currentIdx].offsetWidth;
+            const offset = (containerWidth / 2) - (itemOffset + (itemWidth / 2));
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (currentIdx !== index) {
+                    currentIdx = index;
+                    updateGallery();
+                }
+            });
+        });
+
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - track.offsetLeft;
+        });
+
+        track.addEventListener('mouseleave', () => isDragging = false);
+        track.addEventListener('mouseup', () => isDragging = false);
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX);
+            if (Math.abs(walk) > 100) {
+                moveGallery(walk > 0 ? -1 : 1);
+                isDragging = false;
+            }
+        });
+
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+        track.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) moveGallery(diff > 0 ? 1 : -1);
+        });
+
+        window.addEventListener('load', updateGallery);
+        window.addEventListener('resize', updateGallery);
+    </script>
     <footer class="bg-navy text-white pt-24 pb-12 rounded-t-[3rem] dark:bg-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-4 gap-12 mb-16">
@@ -268,7 +450,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/message/VFAUK25HIZTPG1" target="_blank"
+    <a href="https://wa.me/79606586212" target="_blank"
         class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring z-50 flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
             <path

@@ -7,7 +7,7 @@
     <title>Africans Talent | Études, Football & Mobilité Internationale</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -17,16 +17,17 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: '#0B2D5C',
-                        brightBlue: '#2563EB',
+                        navy: '#0369A1',
+                        sky: '#0EA5E9',
                         red: '#D62828',
                         gold: '#F2C14E',
-                        text: '#1B1F24',
-                        offWhite: '#F8F9FA'
+                        text: '#0C4A6E',
+                        offWhite: '#F0F9FF',
+                        sportGreen: '#22C55E'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
+                        sans: ['Barlow', 'sans-serif'],
+                        display: ['Barlow Condensed', 'sans-serif'],
                     },
                     borderRadius: {
                         '4xl': '2.5rem',
@@ -48,6 +49,79 @@
         .transition-spring {
             transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
+        /* Gallery Styles */
+        .gallery-container {
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            flex: 0 0 300px;
+            height: 450px;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.8) translateZ(-200px);
+            opacity: 0.4;
+            filter: blur(4px);
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 400px;
+                height: 550px;
+            }
+        }
+
+        .gallery-item.active {
+            transform: scale(1.1) translateZ(0);
+            opacity: 1;
+            filter: blur(0);
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(3, 105, 161, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item.active img {
+            transform: scale(1.05);
+        }
+
+        .gallery-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(3, 105, 161, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .gallery-nav-btn:hover {
+            background: #0369A1;
+            color: white;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -64,10 +138,12 @@
                     data-i18n="nav.etudes">ÉTUDES</a>
                 <a href="football.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.football">FOOTBALL</a>
-                <a href="bourses.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                <a href="chine.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.bourses">BOURSES</a>
                 <a href="voyage.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.voyage">VOYAGE</a>
+                <a href="apropos.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.apropos">À PROPOS</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -109,10 +185,10 @@
         <!-- Hero Section -->
         <div class="relative w-full h-[600px] md:h-[700px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
             <div class="absolute inset-0">
-                <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070"
-                    class="w-full h-full object-cover object-center brightness-90 group-hover:scale-105 transition-transform duration-700">
+                <img src="images/russia_architecture_program_1772691261642.png"
+                    class="w-full h-full object-cover object-center brightness-100 group-hover:scale-105 transition-transform duration-700">
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent"></div>
             <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
                 <div class="max-w-3xl">
                     <div
@@ -122,16 +198,16 @@
                                 class="relative inline-flex rounded-full h-2 w-2 bg-red"></span></span>
                         <span data-i18n="hero.badge">Inscriptions 2024-2025 Ouvertes</span>
                     </div>
-                    <h1 class="font-display font-black text-5xl md:text-7xl lg:text-8xl text-white leading-[0.9] mb-8 drop-shadow-xl uppercase"
+                    <h1 class="font-display font-black text-6xl md:text-8xl lg:text-9xl text-white leading-[0.85] mb-8 drop-shadow-2xl uppercase italic tracking-tighter"
                         data-i18n="hero.title">L'Excellence sans Frontières.</h1>
                     <p class="text-white/80 text-lg md:text-2xl max-w-2xl mb-10 leading-relaxed font-medium"
                         data-i18n="hero.subtitle">Votre passerelle premium pour les études, le football professionnel et
                         la mobilité internationale.</p>
                     <a href="contact.html"
-                        class="inline-flex bg-red text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-white hover:text-red transition-all duration-300 shadow-xl shadow-red/20 group items-center gap-3">
+                        class="inline-flex bg-sportGreen text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-600 transition-all duration-300 shadow-xl shadow-sportGreen/20 group items-center gap-3 italic tracking-tighter">
                         <span data-i18n="hero.cta">Commencer mon projet</span>
                         <span
-                            class="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_forward</span>
+                            class="material-symbols-outlined transition-transform group-hover:translate-x-2 font-black">arrow_forward</span>
                     </a>
                 </div>
             </div>
@@ -184,7 +260,7 @@
                             data-i18n="btn.details">Découvrir les packs</span> <span
                             class="material-symbols-outlined text-lg">arrow_forward</span></div>
                 </a>
-                <a href="bourses.html"
+                <a href="chine.html"
                     class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
                     <div class="flex justify-between items-start mb-6">
                         <div
@@ -210,7 +286,109 @@
             </div>
         </div>
     </main>
+    <!-- Gallery Section -->
+    <section class="py-24 bg-white dark:bg-navy/50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 mb-12 text-center">
+            <h2 class="text-4xl md:text-5xl font-black font-display text-navy dark:text-white mb-4"
+                data-i18n="gallery.title.general">L'Expérience en Images</h2>
+            <p class="text-gray-500 dark:text-white/60 max-w-2xl mx-auto" data-i18n="gallery.subtitle">Découvrez
+                l'immersion totale de nos programmes.</p>
+        </div>
 
+        <div class="gallery-container relative">
+            <div class="gallery-track" id="galleryTrack">
+                <!-- Gallery items will be added via script or manually -->
+                <div class="gallery-item active"><img src="images/hero_china_skyline.png" alt="Education"></div>
+                <div class="gallery-item"><img src="images/football_team_cover.jpg" alt="Football"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=800&q=80"
+                        alt="China"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1527891751199-7225231a68dd?auto=format&fit=crop&w=800&q=80"
+                        alt="Travel"></div>
+                <div class="gallery-item"><img src="images/russia_architecture_program_1772691261642.png" alt="Team">
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-12">
+                <button onclick="moveGallery(-1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">west</span>
+                </button>
+                <button onclick="moveGallery(1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">east</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentIdx = 0;
+        const track = document.getElementById('galleryTrack');
+        const items = document.querySelectorAll('.gallery-item');
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        function moveGallery(dir) {
+            currentIdx = (currentIdx + dir + items.length) % items.length;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            items.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === currentIdx) {
+                    item.classList.add('active');
+                }
+            });
+            const containerWidth = track.parentElement.offsetWidth;
+            const itemOffset = items[currentIdx].offsetLeft;
+            const itemWidth = items[currentIdx].offsetWidth;
+            const offset = (containerWidth / 2) - (itemOffset + (itemWidth / 2));
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        // Clic sur une image pour la centrer
+        items.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                if (currentIdx !== index) {
+                    currentIdx = index;
+                    updateGallery();
+                }
+            });
+        });
+
+        // Gestion du "zapping" à la souris (drag)
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - track.offsetLeft;
+        });
+
+        track.addEventListener('mouseleave', () => isDragging = false);
+        track.addEventListener('mouseup', () => isDragging = false);
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX);
+            if (Math.abs(walk) > 100) { // Seuil pour changer d'image
+                moveGallery(walk > 0 ? -1 : 1);
+                isDragging = false;
+            }
+        });
+
+        // Support Tactile
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+        track.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) moveGallery(diff > 0 ? 1 : -1);
+        });
+
+        window.addEventListener('load', updateGallery);
+        window.addEventListener('resize', updateGallery);
+    </script>
     <!-- Footer -->
     <footer class="bg-navy text-white pt-20 pb-12 rounded-t-[3rem] dark:bg-white/5">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
@@ -223,15 +401,15 @@
                 </div>
                 <div>
                     <h5 class="font-bold mb-6 text-gold" data-i18n="nav.contact">Contact</h5>
-                    <p class="text-white/60">+7 900 516 87 18</p>
-                    <p class="text-white/60">contact@africans-talent.com</p>
+                    <p class="text-white/60">+7 960 658 62 12</p>
+                    <p class="text-white/60">talentsafricains24@gmail.com</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/message/VFAUK25HIZTPG1" target="_blank"
+    <a href="https://wa.me/79606586212" target="_blank"
         class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring z-50 flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
             <path

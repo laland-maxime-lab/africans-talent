@@ -7,7 +7,7 @@
     <title>Club de Football | Africans Talent</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -17,16 +17,17 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: '#0B2D5C',
+                        navy: '#0369A1',
+                        sky: '#0EA5E9',
                         red: '#D62828',
                         gold: '#F2C14E',
-                        text: '#1B1F24',
-                        offWhite: '#F8F9FA',
-                        sportGreen: '#25D366'
+                        text: '#0C4A6E',
+                        offWhite: '#F0F9FF',
+                        sportGreen: '#22C55E'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
+                        sans: ['Barlow', 'sans-serif'],
+                        display: ['Barlow Condensed', 'sans-serif'],
                     },
                     borderRadius: {
                         '4xl': '2.5rem',
@@ -38,6 +39,80 @@
     <style>
         .transition-spring {
             transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            flex: 0 0 300px;
+            height: 450px;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.8) translateZ(-200px);
+            opacity: 0.4;
+            filter: blur(4px);
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 400px;
+                height: 550px;
+            }
+        }
+
+        .gallery-item.active {
+            transform: scale(1.1) translateZ(0);
+            opacity: 1;
+            filter: blur(0);
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(34, 197, 94, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item.active img {
+            transform: scale(1.05);
+        }
+
+        .gallery-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: white;
+            color: #22C55E;
+        }
+
+        .gallery-nav-btn:hover {
+            background: #22C55E;
+            color: white;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -55,10 +130,12 @@
                 <a href="etudes.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.etudes">ÉTUDES</a>
                 <a href="football.html" class="text-red" data-i18n="nav.football">FOOTBALL</a>
-                <a href="bourses.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                <a href="chine.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.bourses">BOURSES</a>
                 <a href="voyage.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
                     data-i18n="nav.voyage">VOYAGE</a>
+                <a href="apropos.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.apropos">À PROPOS</a>
             </div>
             <div class="flex items-center gap-4">
                 <!-- Theme Switcher -->
@@ -96,27 +173,132 @@
     </nav>
 
     <!-- Sub-Page Hero -->
-    <div class="max-w-[1400px] mx-auto px-4 md:px-6 mb-16">
-        <div class="relative w-full h-[500px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
-            <div class="absolute inset-0">
-                <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=2070"
-                    alt="Football Training"
-                    class="w-full h-full object-cover object-center brightness-50 group-hover:scale-105 transition-transform duration-1000">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-6 mb-16 relative">
+        <div id="hero-carousel"
+            class="relative w-full h-[600px] md:h-[750px] rounded-[3rem] overflow-hidden shadow-2xl bg-navy group">
+
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-100 z-10">
+                <div class="absolute inset-0">
+                    <img src="%20image%20football/couverture.PNG" alt="Slide 1"
+                        class="w-full h-full object-cover object-center brightness-100 carousel-img transition-none scale-100">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                    <span
+                        class="text-sportGreen text-xs font-black px-4 py-2 rounded-full mb-6 tracking-widest uppercase border border-sportGreen w-max slide-element"
+                        data-i18n="football.hero.slide1.badge">TREMPLIN VERS LE PRO</span>
+                    <h1 class="font-display font-black text-5xl md:text-8xl text-white mb-6 leading-[1.1] uppercase transform translate-y-0 opacity-100 slide-element transition-all duration-700 delay-300"
+                        data-i18n="football.hero.slide1.title">
+                        Talents d'Afrique, <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-sportGreen via-emerald-400 to-sky">Futur
+                            de la Russie.</span>
+                    </h1>
+                    <p class="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed transform translate-y-0 opacity-100 slide-element transition-all duration-700 delay-500 font-medium"
+                        data-i18n="football.hero.slide1.desc">
+                        Votre Tremplin vers le Pro.
+                    </p>
+                </div>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <span class="text-sportGreen font-bold tracking-widest uppercase text-sm mb-4">Division Sportive</span>
-                <h1 class="font-display font-black text-5xl md:text-7xl text-white mb-6 uppercase italic leading-tight"
-                    data-i18n="football.hero.title">
-                    Devenez le <br><span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-sportGreen to-emerald-400">champion</span>
-                    de demain.
-                </h1>
-                <p class="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed" data-i18n="football.hero.desc">
-                    Rejoignez nos académies partenaires en Russie. Formation professionnelle, détection de talents et
-                    opportunités de carrière internationale.
-                </p>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0">
+                <div class="absolute inset-0">
+                    <img src="%20image%20football/couverture%202.PNG" alt="Slide 2"
+                        class="w-full h-full object-cover object-center brightness-100 carousel-img transition-none scale-100">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                    <span
+                        class="text-emerald-400 text-xs font-black px-4 py-2 rounded-full mb-6 tracking-widest uppercase border border-emerald-400 w-max slide-element"
+                        data-i18n="football.hero.slide2.badge">QUI SOMMES-NOUS ?</span>
+                    <h1 class="font-display font-black text-5xl md:text-7xl text-white mb-6 leading-[1.1] uppercase transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-300"
+                        data-i18n="football.hero.slide2.title">
+                        Propulser le talent africain <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-sportGreen via-emerald-400 to-sky">vers
+                            les sommets.</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl max-w-3xl leading-relaxed transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-500 font-medium"
+                        data-i18n="football.hero.slide2.desc">
+                        Une équipe passionnée, basée en Russie, avec une seule mission : propulser le talent africain
+                        vers les sommets du football russe.
+                    </p>
+                </div>
             </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0">
+                <div class="absolute inset-0">
+                    <img src="%20image%20football/couverture1.jpeg" alt="Slide 3"
+                        class="w-full h-full object-cover object-center brightness-100 carousel-img transition-none scale-100">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                    <span
+                        class="text-sky-400 text-xs font-black px-4 py-2 rounded-full mb-6 tracking-widest uppercase border border-sky-400 w-max slide-element"
+                        data-i18n="football.hero.slide3.badge">LE CONCEPT "ÉTUDES DE FOOT"</span>
+                    <h1 class="font-display font-black text-5xl md:text-7xl text-white mb-6 leading-[1.1] uppercase transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-300"
+                        data-i18n="football.hero.slide3.title">
+                        Où le talent brut <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-sportGreen via-emerald-400 to-sky">rencontre
+                            la discipline.</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl max-w-3xl leading-relaxed transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-500 font-medium"
+                        data-i18n="football.hero.slide3.desc">
+                        Le Terrain d'Apprentissage : Nos joueurs évoluent en championnat régional. C'est notre salle de
+                        classe. La Progression : Chaque match est une étude.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0">
+                <div class="absolute inset-0">
+                    <img src="%20image%20football/couverture3.jpeg" alt="Slide 4"
+                        class="w-full h-full object-cover object-center brightness-100 carousel-img transition-none scale-100">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+                    <span
+                        class="text-red/80 text-xs font-black px-4 py-2 rounded-full mb-6 tracking-widest uppercase border border-red/80 w-max slide-element"
+                        data-i18n="football.hero.slide4.badge">DE LA RÉGION À LA SIGNATURE</span>
+                    <h1 class="font-display font-black text-5xl md:text-7xl text-white mb-6 leading-[1.1] uppercase transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-300"
+                        data-i18n="football.hero.slide4.title">
+                        Un accélérateur <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-sportGreen via-emerald-400 to-sky">de
+                            carrière.</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl max-w-3xl leading-relaxed transform translate-y-8 opacity-0 slide-element transition-all duration-700 delay-500 font-medium"
+                        data-i18n="football.hero.slide4.desc">
+                        Nous ne faisons pas que former ; nous plaçons nos joueurs. Notre réussite, c'est de voir nos
+                        joueurs signer dans les différents clubs professionnels de la Fédération.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div class="absolute bottom-8 left-8 flex gap-3 z-30">
+                <button
+                    class="carousel-indicator size-2.5 rounded-full bg-sportGreen transition-all duration-300 w-8"></button>
+                <button
+                    class="carousel-indicator size-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"></button>
+                <button
+                    class="carousel-indicator size-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"></button>
+                <button
+                    class="carousel-indicator size-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"></button>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button
+                class="absolute right-24 bottom-8 z-30 size-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all transform hover:scale-110 opacity-0 group-hover:opacity-100 border border-white/20"
+                id="prevSlide">
+                <span class="material-symbols-outlined text-2xl">chevron_left</span>
+            </button>
+            <button
+                class="absolute right-8 bottom-8 z-30 size-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all transform hover:scale-110 opacity-0 group-hover:opacity-100 border border-white/20"
+                id="nextSlide">
+                <span class="material-symbols-outlined text-2xl">chevron_right</span>
+            </button>
         </div>
     </div>
 
@@ -125,22 +307,22 @@
         <div class="bg-navy rounded-4xl p-12 shadow-2xl dark:bg-white/5">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div class="text-5xl font-black text-sportGreen mb-2">5+</div>
+                    <div class="text-5xl font-black text-sportGreen mb-2 italic tracking-tighter">5+</div>
                     <div class="text-white/60 text-xs font-bold uppercase tracking-widest" data-i18n="football.stats.1">
                         Centres Partenaires</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-black text-sportGreen mb-2">50+</div>
+                    <div class="text-5xl font-black text-sportGreen mb-2 italic tracking-tighter">50+</div>
                     <div class="text-white/60 text-xs font-bold uppercase tracking-widest" data-i18n="football.stats.2">
                         Joueurs Placés</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-black text-sportGreen mb-2">100%</div>
+                    <div class="text-5xl font-black text-sportGreen mb-2 italic tracking-tighter">100%</div>
                     <div class="text-white/60 text-xs font-bold uppercase tracking-widest" data-i18n="football.stats.3">
                         Accompagnement</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-black text-sportGreen mb-2">24/7</div>
+                    <div class="text-5xl font-black text-sportGreen mb-2 italic tracking-tighter">24/7</div>
                     <div class="text-white/60 text-xs font-bold uppercase tracking-widest" data-i18n="football.stats.4">
                         Support Dédié</div>
                 </div>
@@ -151,7 +333,8 @@
     <!-- Programs Grid -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-black font-display text-navy mb-4 dark:text-white">Nos Programmes de Formation</h2>
+            <h2 class="text-4xl font-black font-display text-navy mb-4 dark:text-white"
+                data-i18n="football.programs.title">Nos Programmes de Formation</h2>
             <div class="h-1.5 w-24 bg-sportGreen mx-auto rounded-full"></div>
         </div>
 
@@ -160,7 +343,7 @@
             <div
                 class="bg-white rounded-4xl overflow-hidden shadow-lg border border-gray-100 hover:-translate-y-4 hover:shadow-2xl transition-spring group dark:bg-white/5 dark:border-white/10">
                 <div class="h-64 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800"
+                    <img src="%20image%20football/1.JPG"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div
                         class="absolute top-6 left-6 bg-navy/80 backdrop-blur-md text-white size-12 flex items-center justify-center rounded-2xl shadow-xl">
@@ -168,23 +351,29 @@
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white">Stage Intensif</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60">3 mois de préparation
+                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white"
+                        data-i18n="football.program.intensif.title">Stage Intensif</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="football.program.intensif.desc">3 mois de préparation
                         physique et technique
                         intensive avec des coachs professionnels certifiés.</p>
                     <ul class="space-y-3 mb-8 text-sm text-gray-600 dark:text-white/40">
                         <li class="flex items-center gap-2"><span
                                 class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
-                            Hébergement inclus</li>
+                            <span data-i18n="football.program.intensif.item1">Hébergement inclus</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> 2
-                            entraînements / jour</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.intensif.item2">2 entraînements / jour</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Évaluation
-                            de fin de stage</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.intensif.item3">Évaluation de fin de stage</span>
+                        </li>
                     </ul>
                     <a href="contact.html"
-                        class="block w-full text-center bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/80 transition-colors">Postuler
+                        class="block w-full text-center bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/80 transition-colors"
+                        data-i18n="football.program.intensif.cta">Postuler
                         maintenant</a>
                 </div>
             </div>
@@ -196,7 +385,7 @@
                     class="absolute top-4 right-4 bg-sportGreen text-white px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest z-20">
                     Populaire</div>
                 <div class="h-64 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800"
+                    <img src="%20image%20football/2.JPG"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div
                         class="absolute top-6 left-6 bg-sportGreen text-white size-12 flex items-center justify-center rounded-2xl shadow-xl">
@@ -204,23 +393,29 @@
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white">Académie Annuelle</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60">Cursus complet sport-études
+                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white"
+                        data-i18n="football.program.annuel.title">Académie Annuelle</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="football.program.annuel.desc">Cursus complet sport-études
                         pour les jeunes
-                        talents de 14 à 21 ans souhaitant percer dans le milieu pro.</p>
+                        talents de 18 à 25 ans souhaitant percer dans le milieu pro.</p>
                     <ul class="space-y-3 mb-8 text-sm text-gray-600 dark:text-white/40">
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Scolarité
-                            française aménagée</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.annuel.item1">Scolarité française aménagée</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Matchs de
-                            championnat officiel</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.annuel.item2">Matchs de championnat officiel</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Pension
-                            complète incluse</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.annuel.item3">Pension complète incluse</span>
+                        </li>
                     </ul>
                     <a href="contact.html"
-                        class="block w-full text-center bg-sportGreen text-white font-bold py-4 rounded-2xl hover:bg-emerald-600 transition-colors shadow-lg shadow-sportGreen/20">Nous
+                        class="block w-full text-center bg-sportGreen text-white font-bold py-4 rounded-2xl hover:bg-emerald-600 transition-colors shadow-lg shadow-sportGreen/20"
+                        data-i18n="football.program.annuel.cta">Nous
                         rejoindre</a>
                 </div>
             </div>
@@ -229,7 +424,7 @@
             <div
                 class="bg-white rounded-4xl overflow-hidden shadow-lg border border-gray-100 hover:-translate-y-4 hover:shadow-2xl transition-spring group dark:bg-white/5 dark:border-white/10">
                 <div class="h-64 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800"
+                    <img src="%20image%20football/3.JPG"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div
                         class="absolute top-6 left-6 bg-navy/80 backdrop-blur-md text-white size-12 flex items-center justify-center rounded-2xl shadow-xl">
@@ -237,23 +432,29 @@
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white">Essais Clubs</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60">Organisation de tests de
+                    <h3 class="text-2xl font-black text-navy mb-3 dark:text-white"
+                        data-i18n="football.program.essais.title">Essais Clubs</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
+                        data-i18n="football.program.essais.desc">Organisation de tests de
                         détection
                         personnalisés auprès de clubs professionnels russes et européens.</p>
                     <ul class="space-y-3 mb-8 text-sm text-gray-600 dark:text-white/40">
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Visa
-                            sportif & invitation</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.essais.item1">Visa sportif & invitation</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
                                 class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
-                            Accompagnement par un agent</li>
+                            <span data-i18n="football.program.essais.item2">Accompagnement par un agent</span>
+                        </li>
                         <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span> Rapport de
-                            scouting complet</li>
+                                class="material-symbols-outlined text-sportGreen text-lg">check_circle</span>
+                            <span data-i18n="football.program.essais.item3">Rapport de scouting complet</span>
+                        </li>
                     </ul>
                     <a href="contact.html"
-                        class="block w-full text-center bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/80 transition-colors">S'inscrire
+                        class="block w-full text-center bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/80 transition-colors"
+                        data-i18n="football.program.essais.cta">S'inscrire
                         aux tests</a>
                 </div>
             </div>
@@ -264,9 +465,11 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 mb-20">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-                <h2 class="text-4xl font-black font-display text-navy mb-8 dark:text-white">Votre rêve pro commence ici.
+                <h2 class="text-4xl font-black font-display text-navy mb-8 dark:text-white"
+                    data-i18n="football.candidature.title">Votre rêve pro commence ici.
                 </h2>
-                <p class="text-gray-500 text-lg mb-8 dark:text-white/60">Nous ne nous contentons pas de vous former,
+                <p class="text-gray-500 text-lg mb-8 dark:text-white/60" data-i18n="football.candidature.desc">Nous ne
+                    nous contentons pas de vous former,
                     nous vous ouvrons les
                     portes des clubs professionnels.</p>
 
@@ -276,54 +479,203 @@
                             class="size-10 bg-sportGreen/10 text-sportGreen rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="material-symbols-outlined">verified</span>
                         </div>
-                        <p class="text-gray-700 dark:text-white/80"><strong>95%</strong> de nos stagiaires progressent
+                        <p class="text-gray-700 dark:text-white/80" data-i18n="football.candidature.fact1">
+                            <strong>95%</strong> de nos stagiaires progressent
                             significativement
-                            après 3 mois.</p>
+                            après 3 mois.
+                        </p>
                     </div>
                     <div class="flex gap-4">
                         <div
                             class="size-10 bg-sportGreen/10 text-sportGreen rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="material-symbols-outlined">visibility</span>
                         </div>
-                        <p class="text-gray-700 dark:text-white/80">Plus de <strong>15 scouts</strong> de clubs russes
+                        <p class="text-gray-700 dark:text-white/80" data-i18n="football.candidature.fact2">Plus de
+                            <strong>15 scouts</strong> de clubs russes
                             assistent à nos
-                            matchs annuels.</p>
+                            matchs annuels.
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div
                 class="bg-white p-10 rounded-4xl shadow-2xl border border-gray-100 dark:bg-white/5 dark:border-white/10">
-                <h3 class="text-2xl font-black text-navy mb-6 dark:text-white">Candidature Détection</h3>
+                <h3 class="text-2xl font-black text-navy mb-6 dark:text-white" data-i18n="football.form.title">
+                    Candidature Détection</h3>
                 <form class="space-y-5">
                     <div class="grid md:grid-cols-2 gap-5">
                         <input type="text" placeholder="Nom Complet"
+                            data-i18n-placeholder="football.form.name.placeholder"
                             class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:outline-none focus:border-sportGreen transition-colors dark:bg-white/5 dark:border-white/10 dark:text-white">
-                        <input type="text" placeholder="Âge"
+                        <input type="text" placeholder="Âge" data-i18n-placeholder="football.form.age.placeholder"
                             class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:outline-none focus:border-sportGreen transition-colors dark:bg-white/5 dark:border-white/10 dark:text-white">
                     </div>
                     <input type="text" placeholder="Poste (ex: Milieu Offensif)"
+                        data-i18n-placeholder="football.form.position.placeholder"
                         class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:outline-none focus:border-sportGreen transition-colors dark:bg-white/5 dark:border-white/10 dark:text-white">
                     <input type="text" placeholder="Lien Vidéo Performance (YouTube/Drive)"
+                        data-i18n-placeholder="football.form.video.placeholder"
                         class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:outline-none focus:border-sportGreen transition-colors dark:bg-white/5 dark:border-white/10 dark:text-white">
                     <textarea placeholder="Parlez-nous de votre parcours club..." rows="3"
+                        data-i18n-placeholder="football.form.experience.placeholder"
                         class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:outline-none focus:border-sportGreen transition-colors dark:bg-white/5 dark:border-white/10 dark:text-white"></textarea>
                     <button type="button"
-                        class="w-full bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/90 transition-spring shadow-lg hover:shadow-navy/30">Envoyer
+                        class="w-full bg-navy text-white font-bold py-4 rounded-2xl hover:bg-navy/90 transition-spring shadow-lg hover:shadow-navy/30"
+                        data-i18n="football.form.submit">Envoyer
                         mon profil</button>
                 </form>
             </div>
         </div>
     </section>
 
+
     <!-- Footer -->
+    <!-- Gallery Section -->
+    <section class="py-24 bg-white dark:bg-navy/50 overflow-hidden border-t border-gray-100 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-4 mb-12 text-center">
+            <h2 class="text-4xl md:text-5xl font-black font-display text-navy dark:text-white mb-4"
+                data-i18n="gallery.title.football">Sur le Terrain</h2>
+            <p class="text-gray-500 dark:text-white/60 max-w-2xl mx-auto" data-i18n="gallery.subtitle">Découvrez
+                l'immersion totale de nos programmes.</p>
+        </div>
+
+        <div class="gallery-container relative">
+            <div class="gallery-track" id="galleryTrack">
+                <!-- Couvertures -->
+                <div class="gallery-item active"><img src="%20image%20football/couverture.PNG" alt="Couverture"></div>
+                <div class="gallery-item"><img src="%20image%20football/couverture%202.PNG" alt="Couverture 2"></div>
+                <div class="gallery-item"><img src="%20image%20football/couverture1.jpeg" alt="Couverture 3"></div>
+                <div class="gallery-item"><img src="%20image%20football/couverture3.jpeg" alt="Couverture 4"></div>
+                <!-- Photos numérotées -->
+                <div class="gallery-item"><img src="%20image%20football/1.JPG" alt="Entraînement"></div>
+                <div class="gallery-item"><img src="%20image%20football/2.JPG" alt="Match"></div>
+                <div class="gallery-item"><img src="%20image%20football/3.JPG" alt="Équipe"></div>
+                <div class="gallery-item"><img src="%20image%20football/4.JPG" alt="Terrain"></div>
+                <div class="gallery-item"><img src="%20image%20football/36a91545-4c68-43b2-ab81-586c2cd3c032.JPG"
+                        alt="Action"></div>
+                <!-- Photos IMG -->
+                <div class="gallery-item"><img src="%20image%20football/IMG_1849.PNG" alt="Football 1"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_1850.PNG" alt="Football 2"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_1851.PNG" alt="Football 3"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_1852.PNG" alt="Football 4"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8316.PNG" alt="Football 5"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8317.PNG" alt="Football 6"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8318.PNG" alt="Football 7"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8319.PNG" alt="Football 8"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8565.PNG" alt="Football 9"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8817.PNG" alt="Football 10"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8874.PNG" alt="Football 11"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8875.PNG" alt="Football 12"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8877.PNG" alt="Football 13"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9307.jpg" alt="Football 14"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9308.jpg" alt="Football 15"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9309.jpg" alt="Football 16"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9316.PNG" alt="Football 17"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9558.jpg" alt="Football 18"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_9559.jpg" alt="Football 19"></div>
+                <div class="gallery-item"><img
+                        src="%20image%20football/WhatsApp%20Image%202026-03-05%20at%2016.44.38.jpeg" alt="Football 20">
+                </div>
+                <!-- Photos HEIC converties -->
+                <div class="gallery-item"><img src="%20image%20football/IMG_7564.jpeg" alt="Football 21"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7743.jpeg" alt="Football 22"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7764.jpeg" alt="Football 23"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7849.jpeg" alt="Football 24"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7851.jpeg" alt="Football 25"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7874.jpeg" alt="Football 26"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7878.jpeg" alt="Football 27"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7895.jpeg" alt="Football 28"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7944.jpeg" alt="Football 29"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_7963.jpeg" alt="Football 30"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8446.jpeg" alt="Football 31"></div>
+                <div class="gallery-item"><img src="%20image%20football/IMG_8447.jpeg" alt="Football 32"></div>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-12">
+                <button onclick="moveGallery(-1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">west</span>
+                </button>
+                <button onclick="moveGallery(1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">east</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentIdx = 0;
+        const track = document.getElementById('galleryTrack');
+        const items = document.querySelectorAll('.gallery-item');
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        function moveGallery(dir) {
+            currentIdx = (currentIdx + dir + items.length) % items.length;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            items.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === currentIdx) {
+                    item.classList.add('active');
+                }
+            });
+            const containerWidth = track.parentElement.offsetWidth;
+            const itemOffset = items[currentIdx].offsetLeft;
+            const itemWidth = items[currentIdx].offsetWidth;
+            const offset = (containerWidth / 2) - (itemOffset + (itemWidth / 2));
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (currentIdx !== index) {
+                    currentIdx = index;
+                    updateGallery();
+                }
+            });
+        });
+
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - track.offsetLeft;
+        });
+
+        track.addEventListener('mouseleave', () => isDragging = false);
+        track.addEventListener('mouseup', () => isDragging = false);
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX);
+            if (Math.abs(walk) > 100) {
+                moveGallery(walk > 0 ? -1 : 1);
+                isDragging = false;
+            }
+        });
+
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+        track.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) moveGallery(diff > 0 ? 1 : -1);
+        });
+
+        window.addEventListener('load', updateGallery);
+        window.addEventListener('resize', updateGallery);
+    </script>
     <footer class="bg-navy text-white pt-24 pb-12 rounded-t-[3rem] dark:bg-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2">
                     <span class="text-3xl font-black font-display tracking-tight text-white mb-6 block">AFRICANS<span
                             class="text-red">TALENT</span>.</span>
-                    <p class="text-white/60 max-w-sm text-lg">Division Sportive : Recrutement, Formation et
+                    <p class="text-white/60 max-w-sm text-lg" data-i18n="football.footer.desc">Division Sportive :
+                        Recrutement, Formation et
                         Accompagnement Pro.</p>
                 </div>
                 <div>
@@ -335,8 +687,8 @@
                 </div>
                 <div>
                     <h5 class="font-bold mb-6 text-gold text-lg">Contact Direct</h5>
-                    <p class="text-white/60">+7 900 516 87 18</p>
-                    <p class="text-white/60">sport@africans-talent.com</p>
+                    <p class="text-white/60">+7 960 658 62 12</p>
+                    <p class="text-white/60">talentsafricains24@gmail.com</p>
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-sm text-white/40 text-center">
@@ -347,7 +699,7 @@
 
     <!-- WhatsApp Button -->
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/message/VFAUK25HIZTPG1" target="_blank"
+    <a href="https://wa.me/79606586212" target="_blank"
         class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring z-50 flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -357,6 +709,84 @@
         <span class="font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
             data-i18n="whatsapp.cta">Discuter avec un expert</span>
     </a>
+    <script>
+        // Hero Carousel Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const nextBtn = document.getElementById('nextSlide');
+            const prevBtn = document.getElementById('prevSlide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            if (slides.length === 0) return;
+
+            function goToSlide(index) {
+                // Reset current slide elements
+                slides[currentSlide].classList.remove('opacity-100', 'z-10');
+                slides[currentSlide].classList.add('opacity-0', 'z-0');
+                slides[currentSlide].querySelectorAll('.slide-element').forEach(el => {
+                    el.classList.remove('opacity-100', 'translate-y-0');
+                    el.classList.add('opacity-0', 'translate-y-8');
+                });
+                slides[currentSlide].querySelector('.carousel-img').classList.remove('scale-105');
+                slides[currentSlide].querySelector('.carousel-img').classList.add('scale-100');
+
+                indicators[currentSlide].classList.remove('bg-sportGreen', 'w-8');
+                indicators[currentSlide].classList.add('bg-white/30');
+
+                // Update current pointer
+                currentSlide = (index + slides.length) % slides.length;
+
+                // Animate new slide elements
+                slides[currentSlide].classList.remove('opacity-0', 'z-0');
+                slides[currentSlide].classList.add('opacity-100', 'z-10');
+
+                setTimeout(() => {
+                    slides[currentSlide].querySelectorAll('.slide-element').forEach(el => {
+                        el.classList.remove('opacity-0', 'translate-y-8');
+                        el.classList.add('opacity-100', 'translate-y-0');
+                    });
+                    slides[currentSlide].querySelector('.carousel-img').classList.remove('scale-100');
+                    slides[currentSlide].querySelector('.carousel-img').classList.add('scale-105');
+                }, 100);
+
+                indicators[currentSlide].classList.remove('bg-white/30');
+                indicators[currentSlide].classList.add('bg-sportGreen', 'w-8');
+            }
+
+            function nextSlide() { goToSlide(currentSlide + 1); }
+            function prevSlide() { goToSlide(currentSlide - 1); }
+
+            // Start auto play
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, 6000);
+            }
+
+            // Stop auto play on user interaction
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+            }
+
+            // Event Listeners
+            nextBtn.addEventListener('click', () => { nextSlide(); stopSlideShow(); startSlideShow(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); stopSlideShow(); startSlideShow(); });
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    goToSlide(index);
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            });
+
+            // Initial setup
+            setTimeout(() => {
+                slides[currentSlide].querySelector('.carousel-img').classList.add('scale-105');
+            }, 100);
+            startSlideShow();
+        });
+    </script>
     <script src="i18n.js"></script>
 </body>
 

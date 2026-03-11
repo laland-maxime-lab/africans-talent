@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos | Africans Talent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0369A1',
+                        sky: '#0EA5E9',
+                        red: '#D62828',
+                        gold: '#F2C14E',
+                        text: '#0C4A6E',
+                        offWhite: '#F0F9FF',
+                        sportGreen: '#22C55E'
+                    },
+                    fontFamily: {
+                        sans: ['Barlow', 'sans-serif'],
+                        display: ['Barlow Condensed', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .transition-spring {
+            transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            flex: 0 0 300px;
+            height: 450px;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.8) translateZ(-200px);
+            opacity: 0.4;
+            filter: blur(4px);
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 400px;
+                height: 550px;
+            }
+        }
+
+        .gallery-item.active {
+            transform: scale(1.1) translateZ(0);
+            opacity: 1;
+            filter: blur(0);
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(3, 105, 161, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item.active img {
+            transform: scale(1.05);
+        }
+
+        .gallery-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(3, 105, 161, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: white;
+            color: #0369A1;
+        }
+
+        .gallery-nav-btn:hover {
+            background: #0369A1;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-offWhite text-text antialiased font-sans transition-colors duration-300 dark:bg-navy dark:text-white">
+
+    <!-- Navigation -->
+    <nav class="w-full py-6 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-black font-display tracking-tight text-navy dark:text-white">AFRICANS<span
+                        class="text-red">TALENT</span>.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-600 dark:text-white/60">
+                <a href="etudes.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.etudes">ÉTUDES</a>
+                <a href="football.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.football">FOOTBALL</a>
+                <a href="chine.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.bourses">BOURSES</a>
+                <a href="voyage.html" class="hover:text-navy transition-colors duration-300 dark:hover:text-white"
+                    data-i18n="nav.voyage">VOYAGE</a>
+                <a href="apropos.html" class="text-navy dark:text-white" data-i18n="nav.apropos">À PROPOS</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Theme Switcher -->
+                <button onclick="toggleTheme()"
+                    class="size-10 flex items-center justify-center bg-gray-100 rounded-xl hover:bg-gray-200 transition-all dark:bg-white/10 dark:hover:bg-white/20">
+                    <span class="material-symbols-outlined text-sm dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-sm hidden dark:block text-gold">light_mode</span>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="relative group">
+                    <button
+                        class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-xl font-bold text-xs hover:bg-gray-200 transition-all dark:bg-white/10 dark:hover:bg-white/20">
+                        <span id="current-lang-flag">🇫🇷</span> <span id="current-lang-text">FR</span>
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden dark:bg-navy dark:border-white/10">
+                        <button onclick="setLanguage('fr')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 border-b border-gray-50 dark:hover:bg-white/5 dark:border-white/10"><span>🇫🇷</span>
+                            Français</button>
+                        <button onclick="setLanguage('en')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 border-b border-gray-50 dark:hover:bg-white/5 dark:border-white/10"><span>🇺🇸</span>
+                            English</button>
+                        <button onclick="setLanguage('ru')"
+                            class="w-full text-left px-4 py-3 text-xs font-bold hover:bg-gray-50 flex items-center gap-2 dark:hover:bg-white/5"><span>🇷🇺</span>
+                            Русский</button>
+                    </div>
+                </div>
+                <a href="contact.html"
+                    class="hidden md:flex bg-black text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-gray-800 transition-spring hover:scale-105 hover:shadow-lg dark:bg-white dark:text-navy"
+                    data-i18n="nav.contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-[1400px] mx-auto px-4 md:px-6 mb-16">
+        <div class="relative w-full h-[500px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070" alt="About"
+                    class="w-full h-full object-cover object-center brightness-50 group-hover:scale-105 transition-transform duration-1000">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy to-transparent"></div>
+            <div
+                class="absolute inset-0 flex flex-col justify-center items-center text-center px-8 md:px-16 container mx-auto">
+                <h1 class="font-display font-black text-5xl md:text-7xl text-white mb-6 leading-tight uppercase"
+                    data-i18n="apropos.hero.title">
+                    Étudier en <br><span class="text-gold">Russie.</span>
+                </h1>
+                <p class="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed" data-i18n="apropos.hero.desc">
+                    “Étudier en Russie” constitue le point d’entrée privilégié pour une éducation exceptionnelle au sein
+                    d’une des nations les plus influentes du monde.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro Text Section -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center reveal">
+        <p class="text-xl md:text-2xl text-navy dark:text-white/90 leading-loose font-medium italic"
+            data-i18n="apropos.intro.desc">
+            Nous sommes enchantés de vous accompagner dans votre quête d’excellence académique en Russie. Notre mission
+            est de simplifier votre parcours éducatif en fournissant des informations exhaustives, des ressources utiles
+            et un soutien personnalisé pour vous aider à prendre des décisions éclairées.
+        </p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24 bg-white dark:bg-navy/20 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black font-display text-navy mb-4 dark:text-white"
+                    data-i18n="apropos.services.title">Nos Services</h2>
+                <div class="h-1.5 w-24 bg-gold rounded-full mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 p-8 rounded-3xl hover:-translate-y-4 transition-spring dark:bg-white/5 reveal"
+                    style="transition-delay: 100ms">
+                    <span class="material-symbols-outlined text-5xl text-red mb-6">workspace_premium</span>
+                    <h3 class="text-xl font-black text-navy mb-4 dark:text-white" data-i18n="apropos.service.1.title">
+                        Bourses et Financement</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed dark:text-white/60"
+                        data-i18n="apropos.service.1.desc">Mettant à votre disposition une mine d’informations sur les
+                        universités, les programmes académiques, les procédures de candidature, les visas étudiants, les
+                        coûts de scolarité, et bien plus encore.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-gray-50 p-8 rounded-3xl hover:-translate-y-4 transition-spring dark:bg-white/5 reveal"
+                    style="transition-delay: 200ms">
+                    <span class="material-symbols-outlined text-5xl text-navy mb-6 dark:text-sky">diversity_3</span>
+                    <h3 class="text-xl font-black text-navy mb-4 dark:text-white" data-i18n="apropos.service.2.title">
+                        Guidance Personnalisée</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed dark:text-white/60"
+                        data-i18n="apropos.service.2.desc">Nous proposons une guidance personnalisée, reconnaissant la
+                        singularité de chaque étudiant, afin de les aider à sélectionner l’université et le programme
+                        alignés sur leurs objectifs académiques et professionnels.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-gray-50 p-8 rounded-3xl hover:-translate-y-4 transition-spring dark:bg-white/5 reveal"
+                    style="transition-delay: 300ms">
+                    <span class="material-symbols-outlined text-5xl text-gold mb-6">temple_hindu</span>
+                    <h3 class="text-xl font-black text-navy mb-4 dark:text-white" data-i18n="apropos.service.3.title">
+                        Culture et Vie en Russie</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed dark:text-white/60"
+                        data-i18n="apropos.service.3.desc">Partageant des informations sur la culture russe, la vie
+                        étudiante, les événements culturels, la cuisine et les attractions touristiques, nous visons à
+                        rendre votre expérience en Russie aussi enrichissante en dehors des cours.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-gray-50 p-8 rounded-3xl hover:-translate-y-4 transition-spring dark:bg-white/5 reveal"
+                    style="transition-delay: 400ms">
+                    <span class="material-symbols-outlined text-5xl text-red mb-6">group</span>
+                    <h3 class="text-xl font-black text-navy mb-4 dark:text-white" data-i18n="apropos.service.4.title">
+                        Communauté Engagée</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed dark:text-white/60"
+                        data-i18n="apropos.service.4.desc">Notre équipe dévouée est là pour répondre à toutes vos
+                        questions, préoccupations et besoins tout au long de votre voyage éducatif. Nous voulons que
+                        vous vous sentiez soutenu à chaque étape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="py-24 bg-navy text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-5xl font-black font-display mb-8" data-i18n="apropos.why.title">Pourquoi nous
+                        choisir ?</h2>
+                    <div class="space-y-12">
+                        <div class="flex gap-6">
+                            <div class="size-16 rounded-2xl bg-white/10 flex-shrink-0 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gold">verified</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-black mb-2" data-i18n="apropos.why.item.1.title">Expertise &
+                                    Informations Fiables</h4>
+                                <p class="text-white/60 text-sm leading-relaxed" data-i18n="apropos.why.item.1.desc">
+                                    Source incontournable pour des informations fiables et actualisées sur l'éducation
+                                    en Russie. Notre équipe d'experts offre des conseils avisés sur les universités et
+                                    les démarches.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="size-16 rounded-2xl bg-white/10 flex-shrink-0 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gold">person_add</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-black mb-2" data-i18n="apropos.why.item.2.title">Assistance
+                                    Personnalisée</h4>
+                                <p class="text-white/60 text-sm leading-relaxed" data-i18n="apropos.why.item.2.desc">
+                                    Nous comprenons que chaque étudiant est unique. C'est pourquoi nous vous offrons une
+                                    assistance sur mesure pour sélectionner le programme qui correspond à vos
+                                    aspirations.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="size-16 rounded-2xl bg-white/10 flex-shrink-0 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gold">emoji_events</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-black mb-2" data-i18n="apropos.why.item.3.title">Engagement
+                                    envers la Réussite</h4>
+                                <p class="text-white/60 text-sm leading-relaxed" data-i18n="apropos.why.item.3.desc">
+                                    Nous vous accompagnons dans toutes les étapes : bourses, inscription et soutien
+                                    continu tout au long de votre aventure éducative.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative reveal" style="transition-delay: 200ms">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070"
+                            alt="Success 1" class="rounded-3xl shadow-2xl h-64 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
+                            alt="Success 2" class="rounded-3xl shadow-2xl mt-8 h-64 w-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-24 bg-white dark:bg-navy/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Mission -->
+                <div class="bg-offWhite p-12 rounded-[3rem] dark:bg-white/5 reveal">
+                    <h3 class="text-3xl font-black font-display text-navy mb-6 dark:text-white uppercase"
+                        data-i18n="apropos.mission.title">Notre mission</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed dark:text-white/70"
+                        data-i18n="apropos.mission.desc">
+                        Offrir un accompagnement personnalisé, reconnaissant les besoins spécifiques de chaque étudiant.
+                        “Étudier en Russie” s’engage à vous guider attentivement tout au long des étapes cruciales, de
+                        l’admission à l’installation, en passant par les aspects liés au visa et au financement de vos
+                        études.
+                    </p>
+                </div>
+                <!-- Vision -->
+                <div class="bg-navy p-12 rounded-[3rem] text-white reveal" style="transition-delay: 100ms">
+                    <h3 class="text-3xl font-black font-display text-gold mb-6 uppercase"
+                        data-i18n="apropos.vision.title">Notre vision</h3>
+                    <p class="text-lg text-white/80 leading-relaxed" data-i18n="apropos.vision.desc">
+                        Mise en Relation Internationale : En plus de simplifier votre expérience académique en Russie,
+                        “Étudier en Russie” vous connecte à une communauté internationale d’étudiants et d’anciens
+                        diplômés. Vous aurez l’opportunité de partager des expériences, d’établir des liens durables et
+                        de bénéficier d’un réseau mondial pour enrichir votre parcours éducatif et professionnel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Gallery Section -->
+    <section class="py-24 bg-white dark:bg-navy/50 overflow-hidden border-t border-gray-100 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-4 mb-12 text-center">
+            <h2 class="text-4xl md:text-5xl font-black font-display text-navy dark:text-white mb-4"
+                data-i18n="gallery.title.apropos">Notre Structure</h2>
+            <p class="text-gray-500 dark:text-white/60 max-w-2xl mx-auto" data-i18n="gallery.subtitle">Découvrez
+                l'immersion totale de nos programmes.</p>
+        </div>
+
+        <div class="gallery-container relative">
+            <div class="gallery-track" id="galleryTrack">
+                <div class="gallery-item active"><img
+                        src="https://images.unsplash.com/photo-1523240715639-963c6a28cc91?auto=format&fit=crop&w=800&q=80"
+                        alt="Team"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
+                        alt="Work"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                        alt="Meeting"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                        alt="Success"></div>
+                <div class="gallery-item"><img
+                        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+                        alt="Tech"></div>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-12">
+                <button onclick="moveGallery(-1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">west</span>
+                </button>
+                <button onclick="moveGallery(1)" class="gallery-nav-btn shadow-lg">
+                    <span class="material-symbols-outlined text-2xl">east</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentIdx = 0;
+        const track = document.getElementById('galleryTrack');
+        const items = document.querySelectorAll('.gallery-item');
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        function moveGallery(dir) {
+            currentIdx = (currentIdx + dir + items.length) % items.length;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            items.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === currentIdx) {
+                    item.classList.add('active');
+                }
+            });
+            const containerWidth = track.parentElement.offsetWidth;
+            const itemOffset = items[currentIdx].offsetLeft;
+            const itemWidth = items[currentIdx].offsetWidth;
+            const offset = (containerWidth / 2) - (itemOffset + (itemWidth / 2));
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (currentIdx !== index) {
+                    currentIdx = index;
+                    updateGallery();
+                }
+            });
+        });
+
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - track.offsetLeft;
+        });
+
+        track.addEventListener('mouseleave', () => isDragging = false);
+        track.addEventListener('mouseup', () => isDragging = false);
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX);
+            if (Math.abs(walk) > 100) {
+                moveGallery(walk > 0 ? -1 : 1);
+                isDragging = false;
+            }
+        });
+
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+        track.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) moveGallery(diff > 0 ? 1 : -1);
+        });
+
+        window.addEventListener('load', updateGallery);
+        window.addEventListener('resize', updateGallery);
+    </script>
+    <footer class="bg-navy py-24 text-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center text-center">
+            <a href="index.html" class="flex items-center gap-2 mb-8">
+                <span class="text-3xl font-black font-display tracking-tight">AFRICANS<span
+                        class="text-red">TALENT</span>.</span>
+            </a>
+            <p class="text-white/60 max-w-xl mb-12" data-i18n="hero.subtitle">
+                Votre passerelle premium pour les études, le football professionnel et la mobilité internationale.
+            </p>
+            <div class="flex gap-8 mb-16">
+                <a href="#"
+                    class="size-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-navy transition-all"><span
+                        class="material-symbols-outlined">facebook</span></a>
+                <a href="#"
+                    class="size-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-navy transition-all"><span
+                        class="material-symbols-outlined">play_arrow</span></a>
+                <a href="#"
+                    class="size-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-navy transition-all"><span
+                        class="material-symbols-outlined">link</span></a>
+            </div>
+            <div class="w-full h-px bg-white/10 mb-8"></div>
+            <p class="text-xs text-white/40">© 2024 Africans Talent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div id="whatsapp-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Popup -->
+        <div id="whatsapp-popup"
+            class="hidden w-[350px] bg-white rounded-[2rem] shadow-2xl overflow-hidden mb-4 animate-in fade-in slide-in-from-bottom-10 duration-300">
+            <!-- Header -->
+            <div class="bg-[#25D366] p-6 text-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.996-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.669c1.603.951 3.567 1.454 5.56 1.455h.001c5.584 0 10.126-4.544 10.128-10.128.001-2.707-1.054-5.251-2.97-7.168-1.917-1.917-4.461-2.971-7.168-2.972-5.584 0-10.129 4.544-10.131 10.129-.001 2.105.65 4.154 1.882 5.867l-1.01 3.692 3.709-.973zm10.51-12.433c.273.135.45.224.489.289.039.064.039.373-.058.643-.096.269-.563 1.077-.825 1.184-.262.106-.51.121-.758-.049-.124-.085-3.736-1.571-4.721-2.435-.124-.108-.231-.227-.316-.355l-.121-.188c-.242-.378-.457-.716-.457-1.2 0-.488.197-.75.33-.906.144-.169.355-.223.502-.223.155 0 .31.003.439.012.146.01.231.022.33.243.108.242.37.901.403.966.033.066.054.145.011.23-.043.085-.064.14-.129.216-.065.075-.133.149-.198.221-.066.072-.132.143-.049.29.135.242.541.889 1.148 1.435.783.708 1.443.928 1.649 1.031.188.094.298.074.406-.05.109-.124.467-.542.593-.726.126-.184.251-.155.421-.092zm0 0">
+                        </path>
+                    </svg>
+                    <span class="font-bold text-xl" data-i18n="whatsapp.widget.title">WhatsApp</span>
+                </div>
+                <button onclick="toggleWhatsApp()" class="hover:bg-black/10 p-1 rounded-full transition-colors">
+                    <span class="material-symbols-outlined font-bold">close</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="p-8 bg-gray-50 flex flex-col gap-6 dark:bg-navy/90">
+                <div class="relative bg-white p-6 rounded-3xl rounded-tl-none shadow-md max-w-[85%] dark:bg-white/10">
+                    <p class="text-gray-700 leading-relaxed font-medium dark:text-white/80"
+                        data-i18n="whatsapp.widget.greeting">Bonjour 👋 Puis-je vous aider ?</p>
+                    <!-- Speech Bubble Tail -->
+                    <div class="absolute -left-3 top-0 w-4 h-4 bg-white dark:bg-white/10"
+                        style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
+                </div>
+                <!-- CTA Button -->
+                <a href="https://wa.me/79606586212" target="_blank"
+                    class="self-end bg-[#25D366] text-white px-8 py-4 rounded-full font-black flex items-center gap-3 hover:scale-105 transition-all shadow-lg hover:shadow-xl active:scale-95">
+                    <span data-i18n="whatsapp.widget.btn">Discuter avec moi</span>
+                    <span class="material-symbols-outlined rotate-[-45deg] mb-1">send</span>
+                </a>
+            </div>
+        </div>
+        <!-- Trigger Button -->
+        <button id="whatsapp-trigger" onclick="toggleWhatsApp()"
+            class="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.996-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.669c1.603.951 3.567 1.454 5.56 1.455h.001c5.584 0 10.126-4.544 10.128-10.128.001-2.707-1.054-5.251-2.97-7.168-1.917-1.917-4.461-2.971-7.168-2.972-5.584 0-10.129 4.544-10.131 10.129-.001 2.105.65 4.154 1.882 5.867l-1.01 3.692 3.709-.973zm10.51-12.433c.273.135.45.224.489.289.039.064.039.373-.058.643-.096.269-.563 1.077-.825 1.184-.262.106-.51.121-.758-.049-.124-.085-3.736-1.571-4.721-2.435-.124-.108-.231-.227-.316-.355l-.121-.188c-.242-.378-.457-.716-.457-1.2 0-.488.197-.75.33-.906.144-.169.355-.223.502-.223.155 0 .31.003.439.012.146.01.231.022.33.243.108.242.37.901.403.966.033.066.054.145.011.23-.043.085-.064.14-.129.216-.065.075-.133.149-.198.221-.066.072-.132.143-.049.29.135.242.541.889 1.148 1.435.783.708 1.443.928 1.649 1.031.188.094.298.074.406-.05.109-.124.467-.542.593-.726.126-.184.251-.155.421-.092zm0 0">
+                </path>
+            </svg>
+            <span class="font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+                data-i18n="whatsapp.cta">Discuter avec un expert</span>
+        </button>
+    </div>
+
+    <script>
+        function toggleWhatsApp() {
+            const popup = document.getElementById('whatsapp-popup');
+            const trigger = document.getElementById('whatsapp-trigger');
+            if (popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden');
+                trigger.classList.add('hidden');
+            } else {
+                popup.classList.add('hidden');
+                trigger.classList.remove('hidden');
+            }
+        }
+
+        // Scroll Animation Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+    <script src="i18n.js"></script>
+</body>
+
+</html>

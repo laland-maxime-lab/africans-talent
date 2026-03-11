@@ -1,0 +1,14 @@
+*.mo
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.avi
+*.mkv
+*.webm
+" image football/*.MOV"
+" image football/*.mov"
+Site_Bundle_Africans_Talent.txt
+skill antigravity/
+opengravity/
+.DS_Store
