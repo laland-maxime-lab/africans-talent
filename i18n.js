@@ -1339,7 +1339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <!-- CTA -->
             <div class="p-4 bg-white border-t border-gray-100">
-                <a href="https://wa.me/79606586212" target="_blank" class="bg-[#25D366] text-white font-bold py-3 px-6 rounded-full w-full flex items-center justify-center gap-2 hover:bg-[#20b858] transition-colors shadow-md group">
+                <a href="https://wa.me/message/3OR4EC7FYH6HE1" target="_blank" class="bg-[#25D366] text-white font-bold py-3 px-6 rounded-full w-full flex items-center justify-center gap-2 hover:bg-[#20b858] transition-colors shadow-md group">
                     <span class="text-[15px]" data-i18n="whatsapp.cta">Discuter avec moi</span>
                     <span class="material-symbols-outlined transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">send</span>
                 </a>
