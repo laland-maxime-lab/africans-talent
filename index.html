@@ -181,112 +181,345 @@
         </div>
     </nav>
 
+    <!-- ===== HERO SECTION ===== -->
     <main class="max-w-[1400px] mx-auto px-4 md:px-6 pb-20">
-        <!-- Hero Section -->
-        <div class="relative w-full h-[600px] md:h-[700px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
+        <div class="relative w-full h-[620px] md:h-[750px] rounded-4xl overflow-hidden shadow-2xl bg-navy group">
             <div class="absolute inset-0">
                 <img src="images/russia_architecture_program_1772691261642.png"
-                    class="w-full h-full object-cover object-center brightness-100 group-hover:scale-105 transition-transform duration-700">
+                    class="w-full h-full object-cover object-center brightness-75 group-hover:scale-105 transition-transform duration-700">
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 to-transparent"></div>
             <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <div class="max-w-3xl">
+                <div class="max-w-4xl">
                     <div
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 mb-8 font-bold text-xs uppercase tracking-wider overflow-hidden">
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 mb-8 font-bold text-xs uppercase tracking-wider">
                         <span class="relative flex h-2 w-2"><span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red opacity-75"></span><span
-                                class="relative inline-flex rounded-full h-2 w-2 bg-red"></span></span>
-                        <span data-i18n="hero.badge">Inscriptions 2024-2025 Ouvertes</span>
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sportGreen opacity-75"></span><span
+                                class="relative inline-flex rounded-full h-2 w-2 bg-sportGreen"></span></span>
+                        <span data-i18n="hero.badge">Inscriptions 2026-2027 Ouvertes</span>
                     </div>
-                    <h1 class="font-display font-black text-6xl md:text-8xl lg:text-9xl text-white leading-[0.85] mb-8 drop-shadow-2xl uppercase italic tracking-tighter"
-                        data-i18n="hero.title">L'Excellence sans Frontières.</h1>
+                    <h1 class="font-display font-black text-5xl md:text-8xl lg:text-9xl text-white leading-[0.85] mb-6 drop-shadow-2xl uppercase italic tracking-tighter"
+                        data-i18n="hero.title">L'Excellence<br><span class="text-gold">sans Frontières.</span></h1>
                     <p class="text-white/80 text-lg md:text-2xl max-w-2xl mb-10 leading-relaxed font-medium"
-                        data-i18n="hero.subtitle">Votre passerelle premium pour les études, le football professionnel et
-                        la mobilité internationale.</p>
-                    <a href="contact.html"
-                        class="inline-flex bg-sportGreen text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-600 transition-all duration-300 shadow-xl shadow-sportGreen/20 group items-center gap-3 italic tracking-tighter">
-                        <span data-i18n="hero.cta">Commencer mon projet</span>
-                        <span
-                            class="material-symbols-outlined transition-transform group-hover:translate-x-2 font-black">arrow_forward</span>
-                    </a>
+                        data-i18n="hero.subtitle">Votre agence de référence pour les études en Russie et en Chine,
+                        l'Académie de Football Professionnel et votre mobilité internationale.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html"
+                            class="inline-flex bg-sportGreen text-white px-8 py-4 rounded-2xl font-black text-lg hover:bg-emerald-600 transition-all duration-300 shadow-xl shadow-sportGreen/20 items-center gap-3 italic tracking-tighter">
+                            <span data-i18n="hero.cta">Commencer mon projet</span>
+                            <span class="material-symbols-outlined font-black">arrow_forward</span>
+                        </a>
+                        <a href="apropos.html"
+                            class="inline-flex bg-white/10 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-2xl font-black text-lg hover:bg-white/20 transition-all duration-300 items-center gap-3 italic tracking-tighter">
+                            <span>Découvrir l'agence</span>
+                            <span class="material-symbols-outlined font-black">play_circle</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Floating Services -->
-        <div class="relative -mt-24 z-20 px-4 md:px-0">
-            <div class="flex gap-6 overflow-x-auto hide-scroll pb-10 snap-x snap-mandatory">
-                <a href="etudes.html"
-                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-14 h-14 bg-navy/5 text-navy rounded-2xl flex items-center justify-center group-hover:bg-navy group-hover:text-white transition-colors dark:bg-white/10 dark:text-white dark:group-hover:bg-white dark:group-hover:text-navy">
-                            <span class="material-symbols-outlined text-3xl">school</span>
-                        </div>
-                        <span
-                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
-                            data-i18n="tag.russie">Russie</span>
-                    </div>
-                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
-                        data-i18n="service.etudes.title">Études
-                    </h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
-                        data-i18n="service.etudes.desc">Admission
-                        garantie dans les meilleures universités d'État. Pack complet logé.</p>
-                    <div
-                        class="flex items-center text-navy font-bold text-sm group-hover:gap-2 transition-all dark:text-white">
-                        <span data-i18n="btn.details">Découvrir les packs</span> <span
-                            class="material-symbols-outlined text-lg">arrow_forward</span>
-                    </div>
-                </a>
-                <a href="football.html"
-                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-14 h-14 bg-red/5 text-red rounded-2xl flex items-center justify-center group-hover:bg-red group-hover:text-white transition-colors dark:bg-red/10 dark:text-red dark:group-hover:bg-red dark:group-hover:text-white">
-                            <span class="material-symbols-outlined text-3xl">sports_soccer</span>
-                        </div>
-                        <span
-                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
-                            data-i18n="tag.football">Football</span>
-                    </div>
-                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
-                        data-i18n="service.football.title">
-                        Football</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
-                        data-i18n="service.football.desc">Formation
-                        intensive et essais avec des clubs pros. Devenez joueur professionnel.</p>
-                    <div class="flex items-center text-red font-bold text-sm group-hover:gap-2 transition-all"><span
-                            data-i18n="btn.details">Découvrir les packs</span> <span
-                            class="material-symbols-outlined text-lg">arrow_forward</span></div>
-                </a>
-                <a href="chine.html"
-                    class="min-w-[300px] md:min-w-[350px] bg-white rounded-3xl p-6 shadow-xl snap-start hover:-translate-y-4 hover:shadow-2xl transition-spring group border border-gray-100 dark:bg-white/5 dark:border-white/10">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-14 h-14 bg-gold/10 text-gold rounded-2xl flex items-center justify-center group-hover:bg-gold group-hover:text-white transition-colors dark:bg-gold/20 dark:text-gold dark:group-hover:bg-gold dark:group-hover:text-navy">
-                            <span class="material-symbols-outlined text-3xl">workspace_premium</span>
-                        </div>
-                        <span
-                            class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase dark:bg-white/10 dark:text-white/60"
-                            data-i18n="tag.chine">Chine</span>
-                    </div>
-                    <h3 class="text-2xl font-black font-display text-navy mb-2 dark:text-white"
-                        data-i18n="service.bourses.title">
-                        Bourses</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed dark:text-white/60"
-                        data-i18n="service.bourses.desc">Financement
-                        jusqu'à 100% pour vos études en Chine (Master & PhD).</p>
-                    <div
-                        class="flex items-center text-gold font-bold text-sm group-hover:gap-2 transition-all dark:text-white">
-                        <span data-i18n="btn.details">Découvrir les packs</span> <span
-                            class="material-symbols-outlined text-lg">arrow_forward</span>
-                    </div>
-                </a>
+            <!-- Trust badges -->
+            <div class="absolute bottom-6 left-6 right-6 flex gap-3 flex-wrap">
+                <span
+                    class="bg-white/15 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest flex items-center gap-1">🇷🇺
+                    Russie</span>
+                <span
+                    class="bg-white/15 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest flex items-center gap-1">🇨🇳
+                    Chine</span>
+                <span
+                    class="bg-white/15 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest flex items-center gap-1">⚽
+                    Football Pro</span>
+                <span
+                    class="bg-white/15 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest flex items-center gap-1">✈️
+                    Visa & Voyage</span>
             </div>
         </div>
     </main>
-    <!-- Gallery Section -->
+
+    <!-- ===== STATISTICS BANNER ===== -->
+    <section class="bg-navy dark:bg-white/5 py-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="text-white">
+                    <p class="font-display font-black text-4xl md:text-5xl text-gold">500+</p>
+                    <p class="text-white/60 text-sm font-medium mt-1 uppercase tracking-widest">Étudiants Placés</p>
+                </div>
+                <div class="text-white border-none md:border-solid md:border-l border-white/10 md:pl-8">
+                    <p class="font-display font-black text-4xl md:text-5xl text-gold">3</p>
+                    <p class="text-white/60 text-sm font-medium mt-1 uppercase tracking-widest">Pays Couverts</p>
+                </div>
+                <div
+                    class="text-white border-t md:border-t-0 md:border-solid md:border-l border-white/10 pt-8 md:pt-0 md:pl-8">
+                    <p class="font-display font-black text-4xl md:text-5xl text-gold">15+</p>
+                    <p class="text-white/60 text-sm font-medium mt-1 uppercase tracking-widest">Partenaires</p>
+                </div>
+                <div
+                    class="text-white border-t md:border-t-0 border-none md:border-solid md:border-l border-white/10 pt-8 md:pt-0 md:pl-8">
+                    <p class="font-display font-black text-4xl md:text-5xl text-gold">95%</p>
+                    <p class="text-white/60 text-sm font-medium mt-1 uppercase tracking-widest">Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHO ARE WE ===== -->
+    <section class="py-24 bg-offWhite dark:bg-navy">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="text-xs font-black text-red uppercase tracking-widest mb-4 block">Notre Mission</span>
+                <h2
+                    class="text-4xl md:text-6xl font-black font-display text-navy dark:text-white mb-6 uppercase leading-tight">
+                    Votre passerelle vers le monde.</h2>
+                <p class="text-gray-500 dark:text-white/60 text-lg leading-relaxed mb-6">
+                    <strong class="text-navy dark:text-white">Africans Talent</strong> est une agence basée en Russie,
+                    fondée par et pour les talents africains. Nous accompagnons chaque étudiant, sportif et
+                    professionnel qui aspire à réaliser son projet à l'international.
+                </p>
+                <p class="text-gray-500 dark:text-white/60 text-lg leading-relaxed mb-10">
+                    Qu'il s'agisse d'intégrer une université russe ou chinoise, de rejoindre une académie de football
+                    professionnelle, ou d'organiser votre voyage et votre installation, nous sommes à vos côtés, de A à
+                    Z.
+                </p>
+                <a href="apropos.html"
+                    class="inline-flex items-center gap-2 text-navy font-bold text-sm dark:text-gold hover:gap-4 transition-all">
+                    En savoir plus sur nous <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+            </div>
+            <div class="relative hidden sm:block">
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="images/couveture.jpeg" class="rounded-3xl w-full h-52 object-cover shadow-xl"
+                        alt="Africans Talent Russie">
+                    <img src="images/football_team_cover.jpg"
+                        class="rounded-3xl w-full h-52 object-cover shadow-xl mt-8" alt="Football Africans Talent">
+                    <img src="images/hero_china_campus.png" class="rounded-3xl w-full h-52 object-cover shadow-xl -mt-4"
+                        alt="Études en Chine">
+                    <img src="images/hero_china_skyline.png" class="rounded-3xl w-full h-52 object-cover shadow-xl mt-4"
+                        alt="Campus">
+                </div>
+                <!-- floating badge -->
+                <div
+                    class="absolute -bottom-6 -left-6 bg-white dark:bg-navy border border-gray-100 dark:border-white/10 rounded-2xl shadow-2xl p-4 flex items-center gap-3 backdrop-blur-md z-10">
+                    <span class="text-4xl">🌍</span>
+                    <div>
+                        <p class="font-black text-navy dark:text-white text-sm">Agence Internationale</p>
+                        <p class="text-gray-500 dark:text-white/60 text-xs">Russie · Chine · Afrique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3 SERVICES ===== -->
+    <section class="py-24 bg-white dark:bg-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-black text-sportGreen uppercase tracking-widest mb-4 block">Ce que nous
+                    faisons</span>
+                <h2 class="text-4xl md:text-6xl font-black font-display text-navy dark:text-white uppercase mb-4">Nos
+                    Services</h2>
+                <div class="h-1.5 w-24 bg-red mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <a href="etudes.html" class="group relative overflow-hidden rounded-4xl shadow-2xl aspect-[3/4] block">
+                    <img src="images/couverture2.jpeg"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Études en Russie">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute top-6 left-6">
+                        <span
+                            class="bg-navy/70 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest">🇷🇺
+                            Russie</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span
+                            class="material-symbols-outlined text-white text-5xl mb-4 block opacity-80 group-hover:opacity-100 transition-opacity">school</span>
+                        <h3 class="text-3xl font-black font-display text-white uppercase mb-2" data-i18n="nav.etudes">
+                            Études en Russie</h3>
+                        <p class="text-white/70 text-sm mb-6 leading-relaxed">Admission garantie dans les meilleures
+                            universités d'État. Pack complet avec logement inclus.</p>
+                        <div
+                            class="flex items-center text-sportGreen font-bold text-sm gap-1 group-hover:gap-3 transition-all">
+                            <span data-i18n="btn.details">Découvrir les packs</span>
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Service 2 -->
+                <a href="football.html"
+                    class="group relative overflow-hidden rounded-4xl shadow-2xl aspect-[3/4] block md:mt-12">
+                    <img src="images/football_team_cover.jpg"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Football Pro">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute top-6 left-6">
+                        <span
+                            class="bg-sportGreen/80 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest">⚽
+                            Football</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span
+                            class="material-symbols-outlined text-white text-5xl mb-4 block opacity-80 group-hover:opacity-100 transition-opacity">sports_soccer</span>
+                        <h3 class="text-3xl font-black font-display text-white uppercase mb-2" data-i18n="nav.football">
+                            Football</h3>
+                        <p class="text-white/70 text-sm mb-6 leading-relaxed">Formation intensive et essais avec des
+                            clubs professionnels. Devenez joueur professionnel en Russie.</p>
+                        <div
+                            class="flex items-center text-sportGreen font-bold text-sm gap-1 group-hover:gap-3 transition-all">
+                            <span data-i18n="btn.details">Découvrir les packs</span>
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Service 3 -->
+                <a href="chine.html" class="group relative overflow-hidden rounded-4xl shadow-2xl aspect-[3/4] block">
+                    <img src="images/hero_china_skyline.png"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Études en Chine">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute top-6 left-6">
+                        <span
+                            class="bg-red/70 backdrop-blur-md text-white text-[10px] font-black px-3 py-2 rounded-full border border-white/20 uppercase tracking-widest">🇨🇳
+                            Chine</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span
+                            class="material-symbols-outlined text-white text-5xl mb-4 block opacity-80 group-hover:opacity-100 transition-opacity">workspace_premium</span>
+                        <h3 class="text-3xl font-black font-display text-white uppercase mb-2" data-i18n="nav.bourses">
+                            Études en Chine</h3>
+                        <p class="text-white/70 text-sm mb-6 leading-relaxed">Financement jusqu'à 100% pour votre Master
+                            ou PhD dans les meilleures universités chinoises.</p>
+                        <div
+                            class="flex items-center text-gold font-bold text-sm gap-1 group-hover:gap-3 transition-all">
+                            <span data-i18n="btn.details">Découvrir les packs</span>
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="py-24 bg-offWhite dark:bg-navy">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-black text-red uppercase tracking-widest mb-4 block">Nos Avantages</span>
+                <h2 class="text-4xl md:text-6xl font-black font-display text-navy dark:text-white uppercase mb-4">
+                    Pourquoi nous choisir ?</h2>
+                <div class="h-1.5 w-24 bg-navy dark:bg-white mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-red shadow-xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-5xl text-red mb-4 block">verified_user</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Accompagnement Garanti</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">De l'inscription à votre arrivée
+                        sur place, nous gérons tout : université, visa, logement, transport, et installation.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-navy shadow-xl hover:-translate-y-2 transition-transform">
+                    <span
+                        class="material-symbols-outlined text-5xl text-navy dark:text-gold mb-4 block">globe_asia</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Réseau International</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">Des partenariats établis avec
+                        15+ universités en Russie et en Chine, et un réseau de clubs de football professionnels.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-5xl text-gold mb-4 block">support_agent</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Support 24/7 sur WhatsApp</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">Nos conseillers répondent à
+                        toutes vos questions via WhatsApp, à toute heure. Vous n'êtes jamais seul à l'étranger.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-sportGreen shadow-xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-5xl text-sportGreen mb-4 block">payments</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Tarifs Transparents</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">Nos packs sont clairs, sans
+                        frais cachés. Études en Russie à des coûts bien inférieurs à la France ou aux USA.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-red shadow-xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-5xl text-red mb-4 block">translate</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Multilingue</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">Nos experts parlent Français,
+                        Anglais et Russe. Votre dossier est traité dans votre langue, sans barrière.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-white/5 rounded-4xl p-8 border-t-4 border-navy shadow-xl hover:-translate-y-2 transition-transform">
+                    <span
+                        class="material-symbols-outlined text-5xl text-navy dark:text-gold mb-4 block">military_tech</span>
+                    <h3 class="text-xl font-black text-navy dark:text-white mb-3">Diplômes Reconnus</h3>
+                    <p class="text-gray-500 dark:text-white/60 text-sm leading-relaxed">Les diplômes des universités
+                        russes et chinoises sont reconnus internationalement. Valeur mondiale pour votre carrière.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="py-24 bg-navy dark:bg-black/20 overflow-hidden text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-black text-gold uppercase tracking-widest mb-4 block">Témoignages</span>
+                <h2 class="text-4xl md:text-6xl font-black font-display uppercase mb-4">Ils nous ont fait confiance.
+                </h2>
+                <div class="h-1.5 w-24 bg-gold mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-4xl p-8 hover:-translate-y-2 transition-transform text-left">
+                    <div class="flex items-center gap-1 mb-4 text-gold text-lg">★★★★★</div>
+                    <p class="text-white/80 text-base leading-relaxed mb-6 italic">"Africans Talent m'a accompagné de A
+                        à Z pour mon Bachelor en Ingénierie à Tambov. Visa, logement, inscription, tout était prêt à mon
+                        arrivée."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-gold/20 text-gold rounded-full flex items-center justify-center font-black text-lg">
+                            K</div>
+                        <div>
+                            <p class="font-bold text-sm">Kofi A.</p>
+                            <p class="text-white/60 text-xs">Étudiant — Ingénierie, Russie 🇷🇺</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-4xl p-8 hover:-translate-y-2 transition-transform text-left">
+                    <div class="flex items-center gap-1 mb-4 text-gold text-lg">★★★★★</div>
+                    <p class="text-white/80 text-base leading-relaxed mb-6 italic">"Grâce à l'académie football, j'ai
+                        signé dans un club professionnel de la région. Mon rêve est devenu réalité en seulement 10
+                        mois."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-sportGreen/20 text-sportGreen rounded-full flex items-center justify-center font-black text-lg">
+                            S</div>
+                        <div>
+                            <p class="font-bold text-sm">Samuel D.</p>
+                            <p class="text-white/60 text-xs">Footballeur Pro — Académie ⚽</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-4xl p-8 hover:-translate-y-2 transition-transform text-left">
+                    <div class="flex items-center gap-1 mb-4 text-gold text-lg">★★★★★</div>
+                    <p class="text-white/80 text-base leading-relaxed mb-6 italic">"J'ai obtenu une bourse complète pour
+                        mon Master en Chine grâce à Africans Talent. La procédure était simple et le suivi
+                        exceptionnel."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-red/20 text-red rounded-full flex items-center justify-center font-black text-lg">
+                            A</div>
+                        <div>
+                            <p class="font-bold text-sm">Aminata B.</p>
+                            <p class="text-white/60 text-xs">Étudiante en Master — Chine 🇨🇳</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
     <section class="py-24 bg-white dark:bg-navy/50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-12 text-center">
             <h2 class="text-4xl md:text-5xl font-black font-display text-navy dark:text-white mb-4"
@@ -294,29 +527,48 @@
             <p class="text-gray-500 dark:text-white/60 max-w-2xl mx-auto" data-i18n="gallery.subtitle">Découvrez
                 l'immersion totale de nos programmes.</p>
         </div>
-
-        <div class="gallery-container relative">
+        <div class="gallery-container relative w-full h-[600px]">
             <div class="gallery-track" id="galleryTrack">
-                <!-- Gallery items will be added via script or manually -->
-                <div class="gallery-item active"><img src="images/hero_china_skyline.png" alt="Education"></div>
+                <div class="gallery-item active"><img src="images/hero_china_skyline.png" alt="Chine"></div>
                 <div class="gallery-item"><img src="images/football_team_cover.jpg" alt="Football"></div>
-                <div class="gallery-item"><img
-                        src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=800&q=80"
-                        alt="China"></div>
-                <div class="gallery-item"><img
-                        src="https://images.unsplash.com/photo-1527891751199-7225231a68dd?auto=format&fit=crop&w=800&q=80"
-                        alt="Travel"></div>
-                <div class="gallery-item"><img src="images/russia_architecture_program_1772691261642.png" alt="Team">
-                </div>
+                <div class="gallery-item"><img src="images/couveture.jpeg" alt="Russie"></div>
+                <div class="gallery-item"><img src="images/couverture2.jpeg" alt="Université"></div>
+                <div class="gallery-item"><img src="images/russia_architecture_program_1772691261642.png"
+                        alt="Architecture"></div>
             </div>
-
-            <div class="flex justify-center gap-6 mt-12">
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-6 mt-12 z-20">
                 <button onclick="moveGallery(-1)" class="gallery-nav-btn shadow-lg">
-                    <span class="material-symbols-outlined text-2xl">west</span>
+                    <span class="material-symbols-outlined text-2xl text-navy">west</span>
                 </button>
                 <button onclick="moveGallery(1)" class="gallery-nav-btn shadow-lg">
-                    <span class="material-symbols-outlined text-2xl">east</span>
+                    <span class="material-symbols-outlined text-2xl text-navy">east</span>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="py-8 px-4 bg-offWhite dark:bg-navy">
+        <div class="max-w-5xl mx-auto">
+            <div
+                class="relative rounded-4xl overflow-hidden bg-navy dark:bg-white/10 p-12 md:p-20 text-center shadow-2xl">
+                <div class="absolute inset-0 opacity-20 bg-cover bg-center"
+                    style="background-image: url('images/russia_architecture_program_1772691261642.png');"></div>
+                <div class="absolute inset-0 bg-navy/60 dark:bg-black/60"></div>
+                <div class="relative z-10">
+                    <span class="text-xs font-black text-gold uppercase tracking-widest mb-4 block">Passez à
+                        l'action</span>
+                    <h2 class="text-4xl md:text-6xl font-black font-display text-white uppercase mb-6 leading-tight">
+                        Votre aventure internationale <span class="text-gold">commence ici.</span></h2>
+                    <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">Rejoignez les
+                        centaines d'étudiants et de sportifs que nous avons déjà accompagnés vers la réussite.
+                        Contactez-nous dès aujourd'hui.</p>
+                    <a href="contact.html"
+                        class="inline-flex bg-sportGreen text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-emerald-600 transition-all duration-300 shadow-xl shadow-sportGreen/30 items-center gap-3 italic tracking-tighter hover:-translate-y-1">
+                        <span>Contactez-nous Maintenant</span>
+                        <span class="material-symbols-outlined font-black">send</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -326,7 +578,7 @@
         const track = document.getElementById('galleryTrack');
         const items = document.querySelectorAll('.gallery-item');
         let isDragging = false;
-        let startX, scrollLeft;
+        let startX;
 
         function moveGallery(dir) {
             currentIdx = (currentIdx + dir + items.length) % items.length;
@@ -336,9 +588,7 @@
         function updateGallery() {
             items.forEach((item, i) => {
                 item.classList.remove('active');
-                if (i === currentIdx) {
-                    item.classList.add('active');
-                }
+                if (i === currentIdx) item.classList.add('active');
             });
             const containerWidth = track.parentElement.offsetWidth;
             const itemOffset = items[currentIdx].offsetLeft;
@@ -347,78 +597,85 @@
             track.style.transform = `translateX(${offset}px)`;
         }
 
-        // Clic sur une image pour la centrer
         items.forEach((item, index) => {
-            item.addEventListener('click', (e) => {
-                if (currentIdx !== index) {
-                    currentIdx = index;
-                    updateGallery();
-                }
-            });
+            item.addEventListener('click', () => { currentIdx = index; updateGallery(); });
         });
 
-        // Gestion du "zapping" à la souris (drag)
-        track.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - track.offsetLeft;
-        });
-
+        track.addEventListener('mousedown', (e) => { isDragging = true; startX = e.pageX - track.offsetLeft; });
         track.addEventListener('mouseleave', () => isDragging = false);
         track.addEventListener('mouseup', () => isDragging = false);
-
         track.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
             e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX);
-            if (Math.abs(walk) > 100) { // Seuil pour changer d'image
-                moveGallery(walk > 0 ? -1 : 1);
-                isDragging = false;
-            }
+            const walk = (e.pageX - track.offsetLeft) - startX;
+            if (Math.abs(walk) > 100) { moveGallery(walk > 0 ? -1 : 1); isDragging = false; }
         });
-
-        // Support Tactile
         let touchStartX = 0;
         track.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
         track.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const diff = touchStartX - touchEndX;
+            const diff = touchStartX - e.changedTouches[0].clientX;
             if (Math.abs(diff) > 50) moveGallery(diff > 0 ? 1 : -1);
         });
-
         window.addEventListener('load', updateGallery);
         window.addEventListener('resize', updateGallery);
     </script>
+
     <!-- Footer -->
     <footer class="bg-navy text-white pt-20 pb-12 rounded-t-[3rem] dark:bg-white/5">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="md:col-span-2">
-                    <span class="text-3xl font-black font-display tracking-tight mb-6 block">AFRICANS<span
+                    <span class="text-3xl font-black font-display tracking-tight mb-4 block">AFRICANS<span
                             class="text-red">TALENT</span>.</span>
-                    <p class="text-white/60 text-lg max-w-sm" data-i18n="hero.subtitle">Votre futur international
-                        commence ici.</p>
+                    <p class="text-white/60 text-lg max-w-sm mb-6">Votre partenaire de confiance pour les études, le
+                        football et la mobilité internationale depuis la Russie.</p>
+                    <div class="flex gap-4 justify-center md:justify-start">
+                        <a href="https://wa.me/message/3OR4EC7FYH6HE1" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sportGreen transition-colors text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.996-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.669c1.603.951 3.567 1.454 5.56 1.455h.001c5.584 0 10.126-4.544 10.128-10.128.001-2.707-1.054-5.251-2.97-7.168-1.917-1.917-4.461-2.971-7.168-2.972-5.584 0-10.129 4.544-10.131 10.129-.001 2.105.65 4.154 1.882 5.867l-1.01 3.692 3.709-.973zm10.51-12.433c.273.135.45.224.489.289.039.064.039.373-.058.643-.096.269-.563 1.077-.825 1.184-.262.106-.51.121-.758-.049-.124-.085-3.736-1.571-4.721-2.435-.124-.108-.231-.227-.316-.355l-.121-.188c-.242-.378-.457-.716-.457-1.2 0-.488.197-.75.33-.906.144-.169.355-.223.502-.223.155 0 .31.003.439.012.146.01.231.022.33.243.108.242.37.901.403.966.033.066.054.145.011.23-.043.085-.064.14-.129.216-.065.075-.133.149-.198.221-.066.072-.132.143-.049.29.135.242.541.889 1.148 1.435.783.708 1.443.928 1.649 1.031.188.094.298.074.406-.05.109-.124.467-.542.593-.726.126-.184.251-.155.421-.092zm0 0">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- Add other social links here -->
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 text-gold">Navigation</h5>
+                    <ul class="space-y-3 inline-block text-left">
+                        <li><a href="etudes.html" class="text-white/60 hover:text-white transition-colors text-sm"
+                                data-i18n="nav.etudes">Études en Russie</a></li>
+                        <li><a href="football.html" class="text-white/60 hover:text-white transition-colors text-sm"
+                                data-i18n="nav.football">Football</a></li>
+                        <li><a href="chine.html" class="text-white/60 hover:text-white transition-colors text-sm"
+                                data-i18n="nav.bourses">Études en Chine</a></li>
+                        <li><a href="voyage.html" class="text-white/60 hover:text-white transition-colors text-sm"
+                                data-i18n="nav.voyage">Voyage</a></li>
+                        <li><a href="apropos.html" class="text-white/60 hover:text-white transition-colors text-sm"
+                                data-i18n="nav.apropos">À Propos</a></li>
+                    </ul>
                 </div>
                 <div>
                     <h5 class="font-bold mb-6 text-gold" data-i18n="nav.contact">Contact</h5>
-                    <p class="text-white/60">+7 960 658 62 12</p>
-                    <p class="text-white/60">talentsafricains24@gmail.com</p>
+                    <ul class="space-y-3 text-left inline-block">
+                        <li class="text-white/60 flex items-center gap-2 text-sm"><span
+                                class="material-symbols-outlined text-base text-gold">phone</span> +7 960 658 62 12</li>
+                        <li class="text-white/60 flex items-center gap-2 text-sm"><span
+                                class="material-symbols-outlined text-base text-gold">mail</span>
+                            talentsafricains24@gmail.com</li>
+                        <li class="text-white/60 flex items-center gap-2 text-sm"><span
+                                class="material-symbols-outlined text-base text-gold">location_on</span> Tambov, Russie
+                        </li>
+                    </ul>
                 </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-sm text-white/40 text-center">
+                <p>© 2026 Africans Talent. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/message/3OR4EC7FYH6HE1" target="_blank"
-        class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-spring z-50 flex items-center gap-3 group overflow-hidden max-w-[60px] hover:max-w-[400px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.996-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.669c1.603.951 3.567 1.454 5.56 1.455h.001c5.584 0 10.126-4.544 10.128-10.128.001-2.707-1.054-5.251-2.97-7.168-1.917-1.917-4.461-2.971-7.168-2.972-5.584 0-10.129 4.544-10.131 10.129-.001 2.105.65 4.154 1.882 5.867l-1.01 3.692 3.709-.973zm10.51-12.433c.273.135.45.224.489.289.039.064.039.373-.058.643-.096.269-.563 1.077-.825 1.184-.262.106-.51.121-.758-.049-.124-.085-3.736-1.571-4.721-2.435-.124-.108-.231-.227-.316-.355l-.121-.188c-.242-.378-.457-.716-.457-1.2 0-.488.197-.75.33-.906.144-.169.355-.223.502-.223.155 0 .31.003.439.012.146.01.231.022.33.243.108.242.37.901.403.966.033.066.054.145.011.23-.043.085-.064.14-.129.216-.065.075-.133.149-.198.221-.066.072-.132.143-.049.29.135.242.541.889 1.148 1.435.783.708 1.443.928 1.649 1.031.188.094.298.074.406-.05.109-.124.467-.542.593-.726.126-.184.251-.155.421-.092zm0 0">
-            </path>
-        </svg>
-        <span class="font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
-            data-i18n="whatsapp.cta">Discuter avec un expert</span>
-    </a>
     <script src="i18n.js"></script>
 </body>
 
